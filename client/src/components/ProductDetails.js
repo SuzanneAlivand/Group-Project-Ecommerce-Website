@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 const ProductDetails = () => {
     const [product, setProduct] = useState(null);
@@ -8,7 +9,7 @@ const ProductDetails = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             //to be modified later when endpoints and handlers have been created
-            const data = await fetch(`/api/item/${itemId}`);
+            const data = await fetch(`/api/items/${itemId}`);
             const json = await data.json();
             setProduct(json.data);
         }
@@ -55,6 +56,11 @@ const Price = styled.div`
     font-style: italic;
     color: gray;
     margin-bottom: 30px;
+`;
+
+const BodyLocation = styled.div`
+    font-size: 32px;
+    font-weight: bold;
 `;
 
 const Category = styled.div`
