@@ -7,12 +7,6 @@ import MyCart from './MyCart';
 
 function App() {
 
-  // useEffect(() => {
-  //   fetch('/bacon')
-  //     .then(res => res.json())
-  //     .then(data => setBacon(data));
-  // }, []);
-
   return (
     <Router>
       <Header />
@@ -20,7 +14,7 @@ function App() {
         <Route exact path="/">
           <ProductsPage />
         </Route>
-        <Route exact path="/items/:itemId">
+        <Route exact path="/item/:itemId">
           <ProductDetails />
         </Route>        
         <Route exact path="/cart">
