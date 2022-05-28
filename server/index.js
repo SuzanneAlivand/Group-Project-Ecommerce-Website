@@ -3,9 +3,11 @@
 const express = require("express");
 const morgan = require("morgan");
 
-// imposting handlers
+// importing handlers
 const { getAllItems } = require("./handlers/allItems");
 const { getItem } = require("./handlers/singleItem");
+const { register } = require("./handlers/register");
+const { login } = require("./handlers/login");
 
 const PORT = 4000;
 
@@ -37,6 +39,10 @@ express()
   .get("/api/items", getAllItems)
   //Get item's information by id
   .get("/api/items/:itemId", getItem)
+  // user - register
+  .post("/api/user/register", register)
+  // user - login
+  .post("/api/user/login", login)
 
   // CART-Purchase items //
   // Add an item to the cart
