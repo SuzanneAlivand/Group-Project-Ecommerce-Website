@@ -26,6 +26,40 @@ express()
   .use("/", express.static(__dirname + "/"))
 
   // REST endpoints?
-  .get("/bacon", (req, res) => res.status(200).json("🥓"))
+  // .get("/bacon", (req, res) => res.status(200).json("🥓"))
+
+  // ITEMS: display all and by id //
+  //Get all items and all item's information
+  .get("/api/items", getAllItems)
+  //Get item's information by id
+  .get("/api/item/:itemId", getItem)
+
+  // CART-Purchase items //
+  // Add an item to the cart
+  .post("/api/add-cart", addItemToCart)
+  // Get all items from a cart
+  .get("/api/cart/:cartId", getCart)
+  // Get item's information from a cart
+  .get("/api/cart/:itemId", getItemCart)
+  // Update an item in the cart
+  .patch("/api/update-cart/:itemId", updateItemToCart)
+  // Delete an item from the cart
+  .delete("/api/delete-cart/:itemId", deleteItemToCart)
+  // Delete the cart and all items inside
+  .delete("/api/delete-cart", deleteCart)
+
+  ///****************************** *//
+  //STRETCH GOAL : USERS
+  .get("/api/users", getAllUsers) // Get all users
+  .get("/api/user/:userId", getUser) // Get 1 user by id
+  .get("/api/all-cart", getAllCart) //Get AllCart if multiple users
+
+  //STRETCH GOAL : FILTERS
+  .get("/api/categories/list", getCategories) // Get an array of all categories
+  .get("/api/items/:category", getItemsByCategory) //Get all items by category
+  .get("/api/items/:companyId", getItemsByCompany) //Get all items for a company
+  .get("/api/companies/:companyId", getCompanyById) // Get companies by Id
+
+  ///****************************** *//
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
