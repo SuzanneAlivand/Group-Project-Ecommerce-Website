@@ -18,15 +18,19 @@ const ProductDetails = () => {
 
     return (
         <ProductWrapper>
-            <Image src={product.imageSrc} />
-            <InfoWrapper>
-                <Name>{product.name}</Name>
-                <Price>${product.price}</Price>
-                <BodyLocation>{product.body_location}</BodyLocation>
-                <Category>{product.category}</Category>
-                <Stock>{product.numInStock}</Stock>
-                <CompanyId>{product.companyId}</CompanyId>
-            </InfoWrapper>
+            {product && (
+             <>
+                <Image src={product.imageSrc} />
+                <InfoWrapper>
+                    <Name>{product.name}</Name>
+                    <Price>${product.price}</Price>
+                    <BodyLocation>{product.body_location}</BodyLocation>
+                    <Category>{product.category}</Category>
+                    <Stock>{product.numInStock}</Stock>
+                    <CompanyId>{product.companyId}</CompanyId>
+                </InfoWrapper> 
+            </>               
+            )}
         </ProductWrapper>
     );
 }

@@ -17,8 +17,9 @@ const ProductsPage = () => {
     
     return (
         <Wrapper>
+            
             {products && products.map(product => (
-                <Link to={`/item/${product._id}`}>
+                <Link to={`/items/${product._id}`}>
                     <ProductContainer>
                         <ProductName>{product.name}</ProductName>
                         <ProductImg src={product.imageSrc}></ProductImg>
