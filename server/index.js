@@ -8,6 +8,7 @@ const { getAllItems } = require("./handlers/allItems");
 const { getItem } = require("./handlers/singleItem");
 const { register } = require("./handlers/register");
 const { login } = require("./handlers/login");
+const { addOrder } = require("./handlers/addOrder");
 
 const PORT = 4000;
 
@@ -43,6 +44,9 @@ express()
   .post("/api/user/register", register)
   // user - login
   .post("/api/user/login", login)
+  
+  // add new order
+  .post("/api/orders", addOrder)
 
   // CART-Purchase items //
   // Add an item to the cart
