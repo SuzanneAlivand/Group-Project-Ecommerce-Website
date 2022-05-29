@@ -1,9 +1,17 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { CartState } from "../context/Context";
 
 const ProductsPage = () => {
-  const [products, setProducts] = useState(null);
+  // const [products, setProducts] = useState(null);
+
+  const {
+    state: { cart },
+    dispatch,
+    products,
+    setProducts
+    } = CartState();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -15,6 +23,8 @@ const ProductsPage = () => {
     fetchProducts();
   }, []);
 
+  console.log(cart);
+  
   return (
     <Wrapper>
       {products &&
@@ -25,7 +35,12 @@ const ProductsPage = () => {
               <ProductImg src={product.imageSrc}></ProductImg>
             </Link>
             <p>${product.price}</p>
-            <Button>Add to my cart</Button>
+            <Button onClick={()=>{
+              dispatch({
+                type:"ADD_ITEM",
+                payload: product,
+              })
+            }}>Add to my cart</Button>
           </ProductContainer>
         ))}
     </Wrapper>
