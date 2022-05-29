@@ -19,6 +19,7 @@ const ProductDetails = () => {
     return (
         <ProductWrapper>
             {product && (
+
              <>
                 <Image src={product.imageSrc} />
                 <InfoWrapper>
@@ -31,6 +32,7 @@ const ProductDetails = () => {
                     <div><Button>Add to my cart</Button></div>
                 </InfoWrapper> 
             </>               
+
             )}
         </ProductWrapper>
     );
