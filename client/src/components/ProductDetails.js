@@ -19,17 +19,20 @@ const ProductDetails = () => {
     return (
         <ProductWrapper>
             {product && (
-                <>
-                    <Image src={product.imageSrc} />
-                    <InfoWrapper>
-                        <Name>{product.name}</Name>
-                        <Price>${product.price}</Price>
-                        <BodyLocation>{product.body_location}</BodyLocation>
-                        <Category>{product.category}</Category>
-                        <Stock>{product.numInStock}</Stock>
-                        <CompanyId>{product.companyId}</CompanyId>
-                    </InfoWrapper> 
-                </>               
+
+             <>
+                <Image src={product.imageSrc} />
+                <InfoWrapper>
+                    <Name>{product.name}</Name>
+                    <Price>${product.price}</Price>
+                    <BodyLocation>{product.body_location}</BodyLocation>
+                    <Category>{product.category}</Category>
+                    <Stock>{product.numInStock}</Stock>
+                    <CompanyId>{product.companyId}</CompanyId>
+                    <div><Button>Add to my cart</Button></div>
+                </InfoWrapper> 
+            </>               
+
             )}
         </ProductWrapper>
     );
@@ -81,3 +84,11 @@ const CompanyId = styled.div`
     font-size: 32px;
     font-weight: bold;
 `;
+
+const Button =styled.button`
+border-radius:4px;
+border:none;
+background-color: lightblue;
+cursor: pointer;
+padding: 5px 10px;
+`
