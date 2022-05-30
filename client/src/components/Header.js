@@ -58,7 +58,7 @@ const Header = () => {
                                 <AiFillDelete onClick={() => {
                                     dispatch({
                                         type: "REMOVE_ITEM",
-                                        payload: product,
+                                        payload: product._id,
                                     })}} />
                             </ProductWrapper>                
                         ))}

@@ -59,7 +59,7 @@ const MyCart = () => {
               onClick={(e) => {
                 dispatch({
                   type: "REMOVE_ITEM",
-                  payload: item,
+                  payload: item._id,
                 });
               }}
             />
