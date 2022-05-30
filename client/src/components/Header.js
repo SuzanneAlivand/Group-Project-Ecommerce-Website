@@ -53,7 +53,7 @@ const Header = () => {
                                 <Avatar src={product.imageSrc} />
                                 <NamePriceDiv>
                                     <Name>{product.name}</Name>   
-                                    <Price>{product.price}</Price>                                
+                                    <Price>${product.price}</Price>                                
                                 </NamePriceDiv>
                                 <AiFillDelete onClick={() => {
                                     dispatch({
@@ -62,7 +62,7 @@ const Header = () => {
                                     })}} />
                             </ProductWrapper>                
                         ))}
-                        {toggleCart && cart.length > 0 && <button><Link to="/cart">Go To Cart</Link></button>}       
+                        {toggleCart && cart.length > 0 && <BtnGoToCart><Link to="/cart">Go To Cart</Link></BtnGoToCart>}       
                     </CartWrapper>                    
                 </CartBtnWrapper>                           
             )}
@@ -106,9 +106,12 @@ const CartCount = styled.div`
 `;
 
 const CartWrapper = styled.div`
+padding: 10px;
     position: absolute;
     display: flex;
     flex-direction: column;
+    background-color: white;
+    box-shadow: 5px 15px 31px 4px #dfdfdf;
     /* border: 1px blue solid; */
     top: 65px;
     
@@ -120,6 +123,7 @@ const CartBtnWrapper = styled.div`
 `;
 
 const ProductWrapper = styled.div`
+    padding: 8px;
     display: flex;
     justify-content: space-between;
 
@@ -131,11 +135,13 @@ const ProductWrapper = styled.div`
 const Avatar = styled.img`
     width: 30px; 
     border-radius: 50%;
+    padding-right: 8px;
 `;
 
 const NamePriceDiv = styled.div`
     display: flex;
     flex-direction: column;
+    padding-right: 10px;
 `;
 
 const Name = styled.div`
@@ -145,3 +151,10 @@ const Name = styled.div`
 const Price = styled.div`
     font-size: 14px;
 `;
+
+const BtnGoToCart = styled.button`
+margin: 20px 50px 10px 50px;
+padding: 10px;
+border-radius: 5px;
+border: 1px #e4e8eb;
+`
