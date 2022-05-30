@@ -3,15 +3,13 @@ import styled from "styled-components";
 import { CartState } from "../context/Context";
 import Form from "./Form/Form";
 
-
 const Checkout = () => {
   //   const [subStatus, setSubStatus] = useState("idle");
   //   const [errMessage, setErrMessage] = useState("");
 
   const {
     state: { cart },
-    } = CartState(); 
-
+  } = CartState();
 
   const { total } = CartState();
   const [formData, setFormData] = useState({});
@@ -19,13 +17,12 @@ const Checkout = () => {
   const handleChange = (value, name) => {
     setFormData({ ...formData, [name]: value });
   };
-  console.log('formData', formData);
+  console.log("formData", formData);
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-
     const checkoutData = {
-        cart: cart,
+      cart: cart,
       ...formData,
     };
 
@@ -41,11 +38,11 @@ const Checkout = () => {
       .then((json) => {
         const { status, error } = json;
         if (status === "success") {
-        //   setSubStatus("confirmed");
+          //   setSubStatus("confirmed");
           // NEED TO BE UPDATED
         } else if (error) {
-            console.log('error');
-        //   setSubStatus("error");
+          console.log("error");
+          //   setSubStatus("error");
           //   setErrMessage(errorMessages[error]);
         }
       });
