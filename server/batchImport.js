@@ -13,6 +13,9 @@ const options = {
 const batchImport = async () => {
   for (const obj of items) {
     obj.price = parseFloat(obj.price.replace("$", ""));
+    for (const obj in items) {
+      items[obj].rating = (Math.round(Math.random() * 9) + 1) / 2;
+    }
   }
   try {
     const client = new MongoClient(MONGO_URI, options);
