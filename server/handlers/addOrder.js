@@ -9,14 +9,17 @@ const options = {
 };
 
 const addOrder = async (req, res) => {
-  const {
-    orderItems,
-    shippingAdress,
-    itemsPice,
-    taxPrice,
-    shippingPrice,
-    totalPrice,
-  } = req.body;
+  console.log('req.body', req.body);
+  // const {
+  //   givenName,
+  //   surname,
+  //   email,
+  //   address,
+  //   city,
+  //   province,
+  // postcode,
+  // country
+  // } = req.body;
   try {
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();
