@@ -7,6 +7,7 @@ import Checkout from "./Checkout";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import { AiOutlineLogin } from "react-icons/ai";
+import Confirmation from "./Confirmation";
 
 function App() {
   return (
@@ -25,12 +26,15 @@ function App() {
         <Route exact path="/checkout">
           <Checkout />
         </Route>
+        <Route exact path="/confirmation">
+          <Confirmation />
+        </Route>
         <Route exact path="/login">
           <Login />
-        </Route>       
+        </Route>
         <Route exact path="/sign-up">
           <SignUp />
-        </Route>         
+        </Route>
       </Switch>
     </Router>
   );

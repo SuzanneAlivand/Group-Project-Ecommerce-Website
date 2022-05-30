@@ -30,6 +30,11 @@ export const cartReducer = (state, action) => {
           x._id === action.payload._id ? (x.qty = action.payload.qty) : x.qty
         ),
       };
+      case "CLEAR":
+        return {
+          ...state,
+          cart: [],
+        }
     default:
       return state;
   }
