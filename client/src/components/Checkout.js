@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { CartState } from "../context/Context";
 import Form from "./Form/Form";
 
-
 const Checkout = () => {
   //   const [subStatus, setSubStatus] = useState("idle");
   //   const [errMessage, setErrMessage] = useState("");
@@ -12,6 +11,7 @@ const Checkout = () => {
 
   const {
     state: { cart },
+  } = CartState()
     dispatch,
     setCart
     } = CartState(); 
@@ -29,12 +29,12 @@ console.log('cart', cart);
   const handleChange = (value, name) => {
     setFormData({ ...formData, [name]: value });
   };
-  console.log('formData', formData);
+  console.log("formData", formData);
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-
     const checkoutData = {
+      cart: cart,
         cart: cart,
         total: total,
       ...formData,
