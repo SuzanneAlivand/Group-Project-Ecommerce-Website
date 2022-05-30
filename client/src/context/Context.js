@@ -42,3 +42,30 @@ export const CartProvider = ({ children }) => {
 export const CartState = () => {
   return useContext(CartContext);
 };
+
+//context to pass user logged-in status across App.
+export const UserContext = createContext(null);
+
+export const UserProvider = ({children}) => {
+    const [user, setUser] = usePersistedState("user", null); 
+    
+    return (
+        <UserContext.Provider value={{user, setUser}}>
+            {children}
+        </UserContext.Provider>
+    );
+};
+
+const usePersistedState = (localStorageName, initialValue) => {
+  const [state, setState] = useState(() => {
+      const storedValue = window.localStorage.getItem(localStorageName);
+  
+      return storedValue !== null ? JSON.parse(storedValue) : initialValue;
+  });
+  
+  useEffect(() => {
+      window.localStorage.setItem(localStorageName, JSON.stringify(state));
+  }, [state]);
+  
+  return [state, setState];
+}
