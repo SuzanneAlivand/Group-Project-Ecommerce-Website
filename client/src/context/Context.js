@@ -1,22 +1,17 @@
-import { createContext, useState, useEffect, useReducer, useContext } from "react";
+import {
+  createContext,
+  useState,
+  useEffect,
+  useReducer,
+  useContext,
+} from "react";
 import { cartReducer } from "./Reducer";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [products, setProducts] = useState(null);
-
-  // useEffect(() => {
-  //     const fetchProducts = async () => {
-  //         //to be modified later when endpoints and handlers have been created
-  //         const data = await fetch("/api/items");
-  //         const json = await data.json();
-  //         setProducts(json.data);
-  //     }
-  //     fetchProducts();
-  // },[]);
-
-  // console.log('products', products);
+  const [total, setTotal] = useState(0);
 
   const [state, dispatch] = useReducer(cartReducer, {
     products: products,
@@ -30,6 +25,8 @@ export const CartProvider = ({ children }) => {
         dispatch,
         products,
         setProducts,
+        total,
+        setTotal,
       }}
     >
       {children}
@@ -38,5 +35,5 @@ export const CartProvider = ({ children }) => {
 };
 
 export const CartState = () => {
-    return useContext(CartContext)
-}
+  return useContext(CartContext);
+};
