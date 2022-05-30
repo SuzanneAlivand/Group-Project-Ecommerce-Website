@@ -4,6 +4,9 @@ import ProductDetails from "./ProductDetails";
 import ProductsPage from "./ProductsPage";
 import MyCart from "./MyCart";
 import Checkout from "./Checkout";
+import Login from "./Login";
+import SignUp from "./SignUp";
+import { AiOutlineLogin } from "react-icons/ai";
 
 function App() {
   return (
@@ -22,6 +25,12 @@ function App() {
         <Route exact path="/checkout">
           <Checkout />
         </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>       
+        <Route exact path="/sign-up">
+          <SignUp />
+        </Route>         
       </Switch>
     </Router>
   );
