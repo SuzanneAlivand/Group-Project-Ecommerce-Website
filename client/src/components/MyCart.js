@@ -1,20 +1,24 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { CartState } from "../context/Context";
+import { Link } from "react-router-dom";
+import { AiFillDelete } from "react-icons/ai";
 
 const MyCart = () => {
+  // const randomRating = Math.floor(Math.random() * (6));
+  // console.log(randomRating + "random number");
 
   const {
     state: { cart },
     dispatch,
-    products,
-    setProducts
-    } = CartState(); 
+    total,
+    setTotal,
+  } = CartState();
 
-  const [total, setTotal] = useState(0);
   useEffect(() => {
-    setTotal(cart.reduce((acc, curr) => acc + curr.price, 0));
+    setTotal(cart.reduce((acc, curr) => acc + curr.price * curr.qty, 0));
   }, [cart]);
+  const x = cart.map((x) => console.log(x.qty));
 
   return (
     <Wrapper>
@@ -22,17 +26,50 @@ const MyCart = () => {
         {cart.map((item) => (
           <ItemContainer>
             <img src={item.imageSrc}></img>
-            <Details>
-              <h3>{item.name}</h3>
-              <h4>${item.price}</h4>
-            </Details>
+            <div style={{ maxWidth: "200px" }}>
+              <p>{item.name}</p>
+            </div>
+            <span>${item.price.toFixed(2)}</span>
+            {item.numInStock > 0 && (
+              <div>
+                <select
+                  style={{ width: "50px", padding:"5px" }}
+                  value={item.qty}
+                  onChange={(e) =>
+                    dispatch({
+                      type: "CHANGE_CART_QTY",
+                      payload: {
+                        _id: item._id,
+                        qty: e.target.value,
+                      },
+                    })
+                  }
+                >
+                  {[...Array(item.numInStock).keys()].map((x) => (
+                    <option key={x + 1} value={x + 1}>
+                      {x + 1}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+            <AiFillDelete style={{cursor: "pointer"}} size={'20px'}
+              onClick={(e) => {
+                dispatch({
+                  type: "REMOVE_ITEM",
+                  payload: item,
+                });
+              }}
+            />
           </ItemContainer>
         ))}
       </Items>
       <Purchase>
-        <h3>Subtotal ({cart.length}) items.</h3>
-        <h4>Total: ${total}</h4>
-        <button>Proceed to checkout</button>
+        <p>Subtotal ({cart.length}) items</p>
+        <span>Total: ${total}</span>
+        <Link to="/checkout  ">
+          <button>Proceed to checkout</button>
+        </Link>
       </Purchase>
     </Wrapper>
   );
@@ -43,6 +80,8 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
   padding: 20px 70px;
+  color: white
+  ;
 `;
 const Items = styled.div`
   width: 50vw;
@@ -50,18 +89,40 @@ const Items = styled.div`
 
 const ItemContainer = styled.div`
   border: 0.5px solid grey;
-  margin-bottom: 10px;
   display: flex;
-  padding: 10px;
+  padding: 10px 20px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius:5px;
+  background-color: #244D61;
+  img {
+    border-radius:5px;
+    width: 120px;
+  }
 `;
-const Details = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+
 const Purchase = styled.div`
   border: 0.5px solid grey;
   width: 20%;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #244D61;
+  padding: 20px;
+  border-radius:5px;
+  align-self: flex-start;
+  button{
+    padding: 5px 10px;
+    border-radius:5px;
+    border: none;
+    margin: 10px;
+  }
+  p{
+    font-size:20px
+  }
+  span{
+    font-size: 18px;
+    margin: 10px;
+  }
 `;
