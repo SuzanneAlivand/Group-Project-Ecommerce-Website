@@ -11,7 +11,6 @@ const Checkout = () => {
 
   const {
     state: { cart },
-  } = CartState()
     dispatch,
     setCart
     } = CartState(); 
