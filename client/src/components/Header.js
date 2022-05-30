@@ -4,12 +4,12 @@ import {FaShoppingCart} from "react-icons/fa";
 import {AiFillDelete} from "react-icons/ai";
 import { useEffect, useState, useRef, createRef } from 'react';
 import { CartState } from '../context/Context';
+import {CgProfile} from 'react-icons/cg';
 
 const Header = () => {
     const [toggleCart, setToggleCart] = useState(false);
     const cartBtnRef = useRef();
     const location = useLocation();
-    console.log(location.pathname);
 
     const {
         state: { cart },
@@ -64,8 +64,9 @@ const Header = () => {
                         ))}
                         {toggleCart && cart.length > 0 && <button><Link to="/cart">Go To Cart</Link></button>}       
                     </CartWrapper>                    
-                </CartBtnWrapper>                
+                </CartBtnWrapper>                           
             )}
+             <NavLink to="/login"><CgProfile size={30} color="blue"/></NavLink> 
         </HeaderSection>
     );
 }
@@ -74,8 +75,10 @@ export default Header;
 const HeaderSection = styled.header`
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin-bottom: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
 `;
 
 const NavLinkStyled = styled(NavLink)`
@@ -108,6 +111,7 @@ const CartWrapper = styled.div`
     flex-direction: column;
     /* border: 1px blue solid; */
     top: 65px;
+    
     z-index: 2;
 `;
 
