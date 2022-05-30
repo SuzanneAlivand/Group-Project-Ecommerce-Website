@@ -1,11 +1,20 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { GrFormPreviousLink } from "react-icons/gr";
 
-const Form = ({ handleSubmit, handleChange, total }) => {
+const Form = ({ handleSubmit, handleChange, total, cart }) => {
+  console.log("cart IS", cart);
   return (
-    <Wrapper onSubmit={handleSubmit}>
+    <FormWrapper onSubmit={handleSubmit}>
       <FormContent>
-        <h1>Order Form</h1>
-        <h2>Provide your information</h2>
+        <ReturnWrapper>
+          <Link to="/cart">
+            <GrFormPreviousLink />
+            <span> Return to cart</span>
+          </Link>
+        </ReturnWrapper>
+        <h1>Your order</h1>
+        <h2>Contact information</h2>
         <FormGroup>
           <Input
             name="givenName"
@@ -67,55 +76,84 @@ const Form = ({ handleSubmit, handleChange, total }) => {
             required
             onChange={(ev) => handleChange(ev.target.value, "country")}
           />
-          <Button type="submit" onSubmit={handleSubmit}>
-            Proceed to checkout
-          </Button>
         </FormGroup>
+        <BtnCheckout type="submit" onSubmit={handleSubmit}>
+          Proceed to checkout
+        </BtnCheckout>
       </FormContent>
       <Purchase>
-        <h3>Subtotal items</h3>
-        <h4>Total:{total} $</h4>
-        <button>Proceed to checkout</button>
+        <Items>
+          {cart.map((item) => (
+            <img src={item.imageSrc}></img>
+          ))}
+        </Items>
+        <h4>Subtotal ({cart.length}) items</h4>
+        <h3>Total: ${total} </h3>
       </Purchase>
-    </Wrapper>
+    </FormWrapper>
   );
 };
 
-const Wrapper = styled.form`
+const FormWrapper = styled.form`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 
   padding: 50px 50px;
 `;
 const FormContent = styled.div`
+  max-width: 300px;
   width: 50vw;
-  margin: 0 16px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
+
 const FormGroup = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+`;
 
-  > div {
-    flex: 1 0 auto;
-    width: 48%;
-
-    &:first-child {
-      margin-right: 6px;
-    }
+const ReturnWrapper = styled.div`
+  span {
+    padding: 10px;
+    /* &.active {
+  text-decoration: none;
+} */
   }
 `;
 
-const Input = styled.input``;
+const Input = styled.input`
+  display: flex;
+  padding: 8px 12px 10px 12px;
+  margin: 5px;
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #e4e8eb;
+`;
 
-const Button = styled.button``;
+const BtnCheckout = styled.button`
+  margin-top: 20px;
+  padding: 10px;
+`;
 
 const Purchase = styled.div`
-  border: 0.5px solid grey;
+  background-color: #fafafa;
+  border: 0.5px solid #e4e8eb;
   width: 20%;
   display: flex;
   flex-direction: column;
   padding: 10px;
+`;
+
+const Items = styled.div`
+  padding: 10px;
+  img {
+    max-width: 80px;
+    &:nth-child(n) {
+      padding: 10px;
+    }
+  }
 `;
 
 export default Form;

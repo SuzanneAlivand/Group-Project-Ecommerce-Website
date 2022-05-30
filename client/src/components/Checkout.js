@@ -14,7 +14,6 @@ const Checkout = () => {
 
 
   const { total } = CartState();
-  // console.log('total is', total);
   const [formData, setFormData] = useState({});
 
   const handleChange = (value, name) => {
@@ -60,6 +59,7 @@ const Checkout = () => {
           handleSubmit={handleSubmit}
           handleChange={handleChange}
           total={total}
+          cart={cart}
         ></Form>
       </Wrapper>
     </>
