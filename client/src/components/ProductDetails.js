@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { CartState } from "../context/Context";
+import Rating from "./Rating";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
@@ -12,6 +13,12 @@ const ProductDetails = () => {
     dispatch,
   } = CartState();
 
+  // storing data
+  useEffect(()=>{
+    localStorage.setItem("Cart", JSON.stringify(cart))
+  },[cart]) 
+
+  
   useEffect(() => {
     const fetchProduct = async () => {
       //to be modified later when endpoints and handlers have been created
@@ -29,6 +36,7 @@ const ProductDetails = () => {
           <Image src={product.imageSrc} />
           <InfoWrapper>
             <Name>{product.name}</Name>
+            <Rating value={product.rating} />
             <Price>${product.price}</Price>
             <BodyLocation>{product.body_location}</BodyLocation>
             <Category>{product.category}</Category>

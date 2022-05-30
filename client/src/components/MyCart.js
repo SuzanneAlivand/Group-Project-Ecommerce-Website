@@ -5,15 +5,17 @@ import { Link } from "react-router-dom";
 import { AiFillDelete } from "react-icons/ai";
 
 const MyCart = () => {
-  // const randomRating = Math.floor(Math.random() * (6));
-  // console.log(randomRating + "random number");
-
   const {
     state: { cart },
     dispatch,
     total,
     setTotal,
   } = CartState();
+
+  // storing data
+  useEffect(()=>{
+    localStorage.setItem("Cart", JSON.stringify(cart))
+  },[cart])
 
   useEffect(() => {
     setTotal(cart.reduce((acc, curr) => acc + curr.price * curr.qty, 0));
