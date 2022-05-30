@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom"; 
-import Header from './Header';
-import ProductDetails from './ProductDetails';
-import ProductsPage from './ProductsPage';
-import MyCart from './MyCart';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Header from "./Header";
+import ProductDetails from "./ProductDetails";
+import ProductsPage from "./ProductsPage";
+import MyCart from "./MyCart";
+import Checkout from "./Checkout";
 
 function App() {
-
   return (
     <Router>
       <Header />
@@ -16,14 +15,16 @@ function App() {
         </Route>
         <Route exact path="/items/:itemId">
           <ProductDetails />
-        </Route>        
+        </Route>
         <Route exact path="/cart">
           <MyCart />
-        </Route>        
+        </Route>
+        <Route exact path="/checkout">
+          <Checkout />
+        </Route>
       </Switch>
     </Router>
   );
-
 }
 
 export default App;
