@@ -2,12 +2,14 @@ import styled from 'styled-components';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import {FaShoppingCart} from "react-icons/fa";
 import {AiFillDelete} from "react-icons/ai";
-import { useEffect, useState, useRef, createRef } from 'react';
+import { useContext, useEffect, useState, useRef, createRef } from 'react';
 import { CartState } from '../context/Context';
 import {CgProfile} from 'react-icons/cg';
+import { UserContext } from '../context/Context';
 
 const Header = () => {
     const [toggleCart, setToggleCart] = useState(false);
+    const [toggleUserMenu, setToggleUserMenu] = useState(false);
     const cartBtnRef = useRef();
     const location = useLocation();
 
@@ -18,6 +20,8 @@ const Header = () => {
         setProducts
         } = CartState(); 
 
+    const {user, setUser} = useContext(UserContext);        
+
     useEffect(() => {
         const closeCart = (e) => {
             (console.log(e.target));
@@ -26,7 +30,7 @@ const Header = () => {
                 && e.path[1] !== cartBtnRef.current 
                 && e.path[2] !== cartBtnRef.current 
                 && e.path[3] !== cartBtnRef.current) {
-                setToggleCart(false);
+                    setToggleCart(false);
             }           
         }
         document.body.addEventListener("click", closeCart);
@@ -35,6 +39,10 @@ const Header = () => {
             document.body.removeEventListener("click", closeCart);
         })
     }, []);
+
+    const handleLogout = () => {
+        setUser(null);
+    }
 
     return (
         <HeaderSection>
@@ -66,7 +74,16 @@ const Header = () => {
                     </CartWrapper>                    
                 </CartBtnWrapper>                           
             )}
-             <NavLink to="/login"><CgProfile size={30} color="blue"/></NavLink> 
+            <NavLinkStyled to={user ? "/user" : "/login"} onClick={() => setToggleUserMenu(!toggleUserMenu)}>
+                <CgProfile size={30} color="blue"/>
+                {user ? <Greeting>Welcome, {user}</Greeting> : "Login"}
+                {user && toggleUserMenu && (
+                    <UserMenuWrapper>
+                        <MenuItem><LinkStyled to="/user">Your profile</LinkStyled></MenuItem>
+                        <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+                    </UserMenuWrapper>
+                )}
+            </NavLinkStyled> 
         </HeaderSection>
     );
 }
@@ -82,11 +99,15 @@ const HeaderSection = styled.header`
 `;
 
 const NavLinkStyled = styled(NavLink)`
-    /* display: flex;
-    list-style-type: none;
-    text-decoration: none; */
+    display: flex;
+    align-items: center;
+    /* list-style-type: none; */
     text-decoration: none;
-    gap: 50px;
+    gap: 10px;
+`;
+
+const LinkStyled = styled(Link)`
+    text-decoration: none;
 `;
 
 const CartBtn = styled.button`
@@ -106,15 +127,14 @@ const CartCount = styled.div`
 `;
 
 const CartWrapper = styled.div`
-padding: 10px;
+    padding: 10px;
     position: absolute;
     display: flex;
     flex-direction: column;
     background-color: white;
     box-shadow: 5px 15px 31px 4px #dfdfdf;
     /* border: 1px blue solid; */
-    top: 65px;
-    
+    top: 65px;   
     z-index: 2;
 `;
 
@@ -158,3 +178,17 @@ padding: 10px;
 border-radius: 5px;
 border: 1px #e4e8eb;
 `
+const Greeting = styled.div`
+    font-weight: bold;
+    text-decoration: none;
+`;
+
+const UserMenuWrapper = styled(CartWrapper)`
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 65px;
+`;
+
+const MenuItem = styled(ProductWrapper)`
+`;

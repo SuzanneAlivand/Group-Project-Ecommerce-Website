@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 const SignUp = () => {
     return (
         <Wrapper>
-            <SignupContainer>
-                <FirstNameInput type="text" placeholder="First Name" required/>
-                <LastNameInput type="text" placeholder="Last Name" required/>
+            <SignupForm>
+                <NameContainer>
+                    <FirstNameInput type="text" placeholder="First Name" required/>
+                    <LastNameInput type="text" placeholder="Last Name" required/>
+                </NameContainer>
+
                 <SignUpInfo>Already a member? <Link to="/login">Login here.</Link></SignUpInfo>
-            </SignupContainer>
+            </SignupForm>
         </Wrapper>
     );
 };
@@ -21,7 +24,7 @@ const Wrapper = styled.div`
     justify-content: center;
 `;
 
-const SignupContainer = styled.div`
+const SignupForm = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -30,6 +33,10 @@ const SignupContainer = styled.div`
     width: 500px;
     height: 40vh;
     gap: 10px;
+`;
+
+const NameContainer = styled.div`
+    display: flex;
 `;
 
 const FirstNameInput = styled.input`
