@@ -42,16 +42,22 @@ const ProductsPage = () => {
             </Link>
             <Rating value={product.rating} />
             <p>${product.price}</p>
-            <Button
-              onClick={() => {
-                dispatch({
-                  type: "ADD_ITEM",
-                  payload: product,
-                });
-              }}
-            >
-              Add to my cart
-            </Button>
+            <div>
+              {product.numInStock > 0 ? (
+                <Button
+                  onClick={() => {
+                    dispatch({
+                      type: "ADD_ITEM",
+                      payload: product,
+                    });
+                  }}
+                >
+                  Add to my cart
+                </Button>
+              ) : (
+                <Button disabled>Add to my cart</Button>
+              )}
+            </div>
           </ProductContainer>
         ))}
     </Wrapper>

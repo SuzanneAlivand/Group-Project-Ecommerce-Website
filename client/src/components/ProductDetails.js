@@ -14,11 +14,10 @@ const ProductDetails = () => {
   } = CartState();
 
   // storing data
-  useEffect(()=>{
-    localStorage.setItem("Cart", JSON.stringify(cart))
-  },[cart]) 
+  useEffect(() => {
+    localStorage.setItem("Cart", JSON.stringify(cart));
+  }, [cart]);
 
-  
   useEffect(() => {
     const fetchProduct = async () => {
       //to be modified later when endpoints and handlers have been created
@@ -43,16 +42,20 @@ const ProductDetails = () => {
             <Stock>{product.numInStock}</Stock>
             <CompanyId>{product.companyId}</CompanyId>
             <div>
-              <Button
-                onClick={() => {
-                  dispatch({
-                    type: "ADD_ITEM",
-                    payload: product,
-                  });
-                }}
-              >
-                Add to my cart
-              </Button>
+              {product.numInStock > 0 ? (
+                <Button
+                  onClick={() => {
+                    dispatch({
+                      type: "ADD_ITEM",
+                      payload: product,
+                    });
+                  }}
+                >
+                  Add to my cart
+                </Button>
+              ) : (
+                <Button disabled>Add to my cart</Button>
+              )}
             </div>
           </InfoWrapper>
         </>
