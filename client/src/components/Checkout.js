@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { CartState } from "../context/Context";
 import Form from "./Form/Form";
@@ -6,13 +7,24 @@ import Form from "./Form/Form";
 const Checkout = () => {
   //   const [subStatus, setSubStatus] = useState("idle");
   //   const [errMessage, setErrMessage] = useState("");
+  const history = useHistory();
 
   const {
     state: { cart },
-  } = CartState();
+  } = CartState()
+    dispatch,
+    setCart
+    } = CartState(); 
+
 
   const { total } = CartState();
   const [formData, setFormData] = useState({});
+
+const linkToConfirmationPage = (formData) =>{
+  history.push("/confirmation")
+}
+
+console.log('cart', cart);
 
   const handleChange = (value, name) => {
     setFormData({ ...formData, [name]: value });
@@ -23,10 +35,12 @@ const Checkout = () => {
     ev.preventDefault();
     const checkoutData = {
       cart: cart,
+        cart: cart,
+        total: total,
       ...formData,
     };
 
-    fetch("/api/orders", {
+    await fetch("/api/orders", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -35,16 +49,21 @@ const Checkout = () => {
       body: JSON.stringify(checkoutData),
     })
       .then((res) => res.json())
-      .then((json) => {
-        const { status, error } = json;
-        if (status === "success") {
-          //   setSubStatus("confirmed");
-          // NEED TO BE UPDATED
-        } else if (error) {
-          console.log("error");
-          //   setSubStatus("error");
-          //   setErrMessage(errorMessages[error]);
-        }
+      .then((data) => {
+        dispatch({type: "CLEAR"})
+        sessionStorage.setItem("CheckoutData", JSON.stringify(checkoutData))
+        setCart(localStorage.removeItem("Cart"));
+        linkToConfirmationPage(formData)
+        // const { status, error } = json;
+        // if (status === "success") {
+        //   linkToConfirmationPage();
+        // //   setSubStatus("confirmed");
+        //   // NEED TO BE UPDATED
+        // } else if (error) {
+        //     console.log('error');
+        // //   setSubStatus("error");
+        //   //   setErrMessage(errorMessages[error]);
+        // }
       });
   };
 
@@ -55,6 +74,7 @@ const Checkout = () => {
           formData={formData}
           handleSubmit={handleSubmit}
           handleChange={handleChange}
+          linkToConfirmationPage={linkToConfirmationPage}
           total={total}
           cart={cart}
         ></Form>

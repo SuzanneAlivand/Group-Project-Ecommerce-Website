@@ -1,11 +1,16 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from "../context/Context";
 
 const Login = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [loginMessage, setLoginMessage] = useState(null); // rethink the variable name
+
+  const {user, setUser} = useContext(UserContext); 
+  
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,18 +27,18 @@ const Login = () => {
       const json = await data.json();
       setLoginMessage(json.message);
       console.log(json);
+      setUser(email);
+      history.push("/");
     } catch (error) {
       console.log("ERROR:", error.message);
     }
   };
 
   const handleEmail = (e) => {
-    // setEmail(email + e.target.value);
     setEmail(e.target.value);
   };
 
   const handlePassword = (e) => {
-    // setPassword(password + e.target.value);
     setPassword(e.target.value);
   };
 
