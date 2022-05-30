@@ -67,7 +67,7 @@ const MyCart = () => {
       <Purchase>
         <p>Subtotal ({cart.length}) items</p>
         <span>Total: ${total}</span>
-        <Link to="/checkout  ">
+        <Link to="/checkout">
           <button>Proceed to checkout</button>
         </Link>
       </Purchase>
