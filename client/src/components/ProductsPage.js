@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CartState } from "../context/Context";
+import Rating from "./Rating";
 
 const ProductsPage = () => {
   // const [products, setProducts] = useState(null);
@@ -10,8 +11,13 @@ const ProductsPage = () => {
     state: { cart },
     dispatch,
     products,
-    setProducts
-    } = CartState();
+    setProducts,
+  } = CartState();
+
+  // storing data
+  useEffect(() => {
+    localStorage.setItem("Cart", JSON.stringify(cart));
+  }, [cart]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -24,7 +30,7 @@ const ProductsPage = () => {
   }, []);
 
   console.log(cart);
-  
+
   return (
     <Wrapper>
       {products &&
@@ -34,13 +40,18 @@ const ProductsPage = () => {
               <ProductName>{product.name}</ProductName>
               <ProductImg src={product.imageSrc}></ProductImg>
             </Link>
+            <Rating value={product.rating} />
             <p>${product.price}</p>
-            <Button onClick={()=>{
-              dispatch({
-                type:"ADD_ITEM",
-                payload: product,
-              })
-            }}>Add to my cart</Button>
+            <Button
+              onClick={() => {
+                dispatch({
+                  type: "ADD_ITEM",
+                  payload: product,
+                });
+              }}
+            >
+              Add to my cart
+            </Button>
           </ProductContainer>
         ))}
     </Wrapper>
