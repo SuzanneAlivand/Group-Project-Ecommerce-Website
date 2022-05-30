@@ -12,18 +12,17 @@ const Checkout = () => {
   const {
     state: { cart },
     dispatch,
-    setCart
-    } = CartState(); 
-
+    setCart,
+  } = CartState();
 
   const { total } = CartState();
   const [formData, setFormData] = useState({});
 
-const linkToConfirmationPage = (formData) =>{
-  history.push("/confirmation")
-}
+  const linkToConfirmationPage = (formData) => {
+    history.push("/confirmation");
+  };
 
-console.log('cart', cart);
+  console.log("cart", cart);
 
   const handleChange = (value, name) => {
     setFormData({ ...formData, [name]: value });
@@ -34,8 +33,7 @@ console.log('cart', cart);
     ev.preventDefault();
     const checkoutData = {
       cart: cart,
-        cart: cart,
-        total: total,
+      total: total,
       ...formData,
     };
 
@@ -49,20 +47,10 @@ console.log('cart', cart);
     })
       .then((res) => res.json())
       .then((data) => {
-        dispatch({type: "CLEAR"})
-        sessionStorage.setItem("CheckoutData", JSON.stringify(checkoutData))
+        dispatch({ type: "CLEAR" });
+        sessionStorage.setItem("CheckoutData", JSON.stringify(checkoutData));
         setCart(localStorage.removeItem("Cart"));
-        linkToConfirmationPage(formData)
-        // const { status, error } = json;
-        // if (status === "success") {
-        //   linkToConfirmationPage();
-        // //   setSubStatus("confirmed");
-        //   // NEED TO BE UPDATED
-        // } else if (error) {
-        //     console.log('error');
-        // //   setSubStatus("error");
-        //   //   setErrMessage(errorMessages[error]);
-        // }
+        linkToConfirmationPage(formData).catch((err) => console.log(err));
       });
   };
 
