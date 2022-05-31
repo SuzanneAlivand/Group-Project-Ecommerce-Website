@@ -73,9 +73,14 @@ const MyCart = () => {
       <Purchase>
         <p>Subtotal ({cart.length}) items</p>
         <span>Total: ${total.toFixed(2)}</span>
-        <Link to="/checkout">
-          <button>Proceed to checkout</button>
-        </Link>
+
+        {cart.length > 0 ? (
+          <Link to="/checkout">
+            <button>Proceed to checkout</button>
+          </Link>
+        ) : (
+          <button disabled>Your cart is empty!</button>
+        )}
       </Purchase>
     </Wrapper>
   );
