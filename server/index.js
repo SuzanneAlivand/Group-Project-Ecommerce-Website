@@ -10,7 +10,7 @@ const { register } = require("./handlers/register");
 const { login } = require("./handlers/login");
 const { addOrder } = require("./handlers/addOrder");
 
-const PORT = 4000;
+const PORT = 5000;
 
 // this is my express server :)
 
@@ -44,7 +44,7 @@ express()
   .post("/api/user/register", register)
   // user - login
   .post("/api/user/login", login)
-  
+
   // add new order
   .post("/api/orders", addOrder)
 
