@@ -5,41 +5,69 @@ import { CartState } from "../context/Context";
 import Rating from "./Rating";
 import SearchBar from "./SearchBar";
 import PaginationDiv from "./PaginationDiv";
+import Filters from "./Filters";
 
 const ProductsPage = () => {
   // const [products, setProducts] = useState(null);
   const [currentItems, setCurrentItems] = useState([]);
+  const [reload, setReload] = useState(false);
 
   const {
     state: { cart },
+    itemState: { byCategory, byBodyLocation, sort, byStock, byRating },
     dispatch,
     products,
     setProducts,
   } = CartState();
 
+  const [filteredProductsArray, setFilteredProductsArray] = useState([]);
   // storing data
   useEffect(() => {
     localStorage.setItem("Cart", JSON.stringify(cart));
   }, [cart]);
+
+  const filterItems = (array) => {
+    let filteredProduct = [...array];
+
+    if (sort) {
+      filteredProduct = filteredProduct.sort((a, b) =>
+        sort === "lowToHigh" ? a.price - b.price : b.price - a.price
+      );
+    }
+    if (byStock) {
+      filteredProduct = filteredProduct.filter(
+        (product) => product.numInStock > 0
+      );
+      console.log("filteredProductBYSTOCK", filteredProduct);
+    }
+    //  setFilteredProductsArray(filteredProduct);
+    console.log("im tired");
+    // setProducts(filteredProduct)
+    return filteredProduct;
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
       //to be modified later when endpoints and handlers have been created
       const data = await fetch("/api/items");
       const json = await data.json();
-      setProducts(json.data);
+      setProducts(filterItems(json.data));
     };
     fetchProducts();
-  }, []);
+  }, [reload]);
 
   console.log(cart);
+  console.log("products", products);
 
   return (
     <MainWrapper>
       {products && (
         <>
           <SearchBar suggestions={products} />
+          <Filters reload={reload} setReload={setReload} />
           <ProductsWrapper>
+            {/* {currentItems.map((product) => ( */}
+
             {currentItems.map((product) => (
               <ProductContainer>
                 <Link to={`/items/${product._id}`}>
@@ -73,6 +101,7 @@ const ProductsPage = () => {
               </ProductContainer>
             ))}
           </ProductsWrapper>
+          {/* <PaginationDiv setCurrentItems={setCurrentItems} items={filteredProductsArray} /> */}
           <PaginationDiv setCurrentItems={setCurrentItems} items={products} />
         </>
       )}
