@@ -13,9 +13,9 @@ const Checkout = () => {
     state: { cart },
     dispatch,
     setCart,
+    total,
   } = CartState();
 
-  const { total } = CartState();
   const [formData, setFormData] = useState({});
 
   const linkToConfirmationPage = (formData) => {
@@ -64,7 +64,11 @@ const Checkout = () => {
           handleSubmit={handleSubmit}
           handleChange={handleChange}
           linkToConfirmationPage={linkToConfirmationPage}
-          total={getCheckOutData.total.toFixed(2)}
+          total={
+            getCheckOutData
+              ? getCheckOutData.total.toFixed(2)
+              : total.toFixed(2)
+          }
           cart={cart}
         ></Form>
       </Wrapper>

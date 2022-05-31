@@ -8,7 +8,7 @@ export const cartReducer = (state, action) => {
         return {
           ...state,
           cart: state.cart.map((x) =>
-            x._id === existItem._id ? action.payload : x
+            x._id === existItem._id ? { ...action.payload, qty: 1 } : x
           ),
         };
       } else {
@@ -44,13 +44,13 @@ export const cartReducer = (state, action) => {
 export const itemReducer = (state, action) => {
   switch (action.type) {
     case "SORT_BY_CATEGORY":
-      return { ...state, byCategory: action.payload }
-      case "SORT_BY_LOCATION":
-        return {...state, byBodyLocation: action.payload}
+      return { ...state, byCategory: action.payload };
+    case "SORT_BY_LOCATION":
+      return { ...state, byBodyLocation: action.payload };
     case "SORT_BY_PRICE":
       return { ...state, sort: action.payload };
-      case "SORT_BY_STOCK":
-        return { ...state, byStock: !state.byStock };
+    case "SORT_BY_STOCK":
+      return { ...state, byStock: !state.byStock };
     case "FILTER_BY_RATING":
       return { ...state, byRating: action.payload };
     case "CLEAR_FILTERS":
