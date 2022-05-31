@@ -50,9 +50,11 @@ const Checkout = () => {
         dispatch({ type: "CLEAR" });
         sessionStorage.setItem("CheckoutData", JSON.stringify(checkoutData));
         setCart(localStorage.removeItem("Cart"));
-        linkToConfirmationPage(formData).catch((err) => console.log(err));
-      });
+        linkToConfirmationPage(formData);
+      })
+      .catch((err) => console.log(err));
   };
+  const getCheckOutData = JSON.parse(sessionStorage.getItem("CheckoutData"));
 
   return (
     <>
@@ -62,7 +64,7 @@ const Checkout = () => {
           handleSubmit={handleSubmit}
           handleChange={handleChange}
           linkToConfirmationPage={linkToConfirmationPage}
-          total={total}
+          total={getCheckOutData.total.toFixed(2)}
           cart={cart}
         ></Form>
       </Wrapper>

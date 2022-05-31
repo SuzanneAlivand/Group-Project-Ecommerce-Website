@@ -19,12 +19,11 @@ const Confirmation = () => {
               <p>{item.name}</p>
               <p>$ {item.price}</p>
               <p>Quantity: {item.qty}</p>
-              <p>Subtotal: {(item.price*item.qty).toFixed(2)}</p>
+              <p>Subtotal: {(item.price * item.qty).toFixed(2)}</p>
             </>
           </ItemContainer>
-          
         ))}
-        <TotalPrice>Total: ${getCheckOutData.total}</TotalPrice>
+        <TotalPrice>Total: ${getCheckOutData.total.toFixed(2)}</TotalPrice>
       </OrderSummary>
     </ConfirmationWrapper>
   );

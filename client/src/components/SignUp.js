@@ -33,9 +33,10 @@ const SignUp = () => {
         }),
       });
       const json = await data.json();
+      console.log(json);
       setSignUpMessage(json.message);
       console.log(json);
-      setUser(email);
+      setUser(userName);
       history.push("/");
     } catch (error) {
       console.log("ERROR:", error.message);
