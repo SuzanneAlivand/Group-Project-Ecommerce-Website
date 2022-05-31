@@ -13,12 +13,14 @@ const MyCart = () => {
   } = CartState();
 
   // storing data
-  useEffect(()=>{
-    localStorage.setItem("Cart", JSON.stringify(cart))
-  },[cart])
+  useEffect(() => {
+    localStorage.setItem("Cart", JSON.stringify(cart));
+  }, [cart]);
 
   useEffect(() => {
-    setTotal(cart.reduce((acc, curr) => acc + curr.price * curr.qty, 0));
+    setTotal(
+      cart.reduce((acc, curr) => acc + Number(curr.price) * Number(curr.qty), 0)
+    );
   }, [cart]);
   const x = cart.map((x) => console.log(x.qty));
 
@@ -31,11 +33,11 @@ const MyCart = () => {
             <div style={{ maxWidth: "200px" }}>
               <p>{item.name}</p>
             </div>
-            <span>${item.price.toFixed(2)}</span>
+            <span>${Number(item.price).toFixed(2)}</span>
             {item.numInStock > 0 && (
               <div>
                 <select
-                  style={{ width: "50px", padding:"5px" }}
+                  style={{ width: "50px", padding: "5px" }}
                   value={item.qty}
                   onChange={(e) =>
                     dispatch({
@@ -55,7 +57,9 @@ const MyCart = () => {
                 </select>
               </div>
             )}
-            <AiFillDelete style={{cursor: "pointer"}} size={'20px'}
+            <AiFillDelete
+              style={{ cursor: "pointer" }}
+              size={"20px"}
               onClick={(e) => {
                 dispatch({
                   type: "REMOVE_ITEM",
@@ -68,7 +72,7 @@ const MyCart = () => {
       </Items>
       <Purchase>
         <p>Subtotal ({cart.length}) items</p>
-        <span>Total: ${total}</span>
+        <span>Total: ${total.toFixed(2)}</span>
         <Link to="/checkout">
           <button>Proceed to checkout</button>
         </Link>
@@ -82,8 +86,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
   padding: 20px 70px;
-  color: white
-  ;
+  color: white;
 `;
 const Items = styled.div`
   width: 50vw;
@@ -95,10 +98,10 @@ const ItemContainer = styled.div`
   padding: 10px 20px;
   justify-content: space-between;
   align-items: center;
-  border-radius:5px;
-  background-color: #244D61;
+  border-radius: 5px;
+  background-color: #244d61;
   img {
-    border-radius:5px;
+    border-radius: 5px;
     width: 120px;
   }
 `;
@@ -110,20 +113,20 @@ const Purchase = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: #244D61;
+  background-color: #244d61;
   padding: 20px;
-  border-radius:5px;
+  border-radius: 5px;
   align-self: flex-start;
-  button{
+  button {
     padding: 5px 10px;
-    border-radius:5px;
+    border-radius: 5px;
     border: none;
     margin: 10px;
   }
-  p{
-    font-size:20px
+  p {
+    font-size: 20px;
   }
-  span{
+  span {
     font-size: 18px;
     margin: 10px;
   }

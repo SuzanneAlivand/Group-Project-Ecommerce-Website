@@ -10,7 +10,7 @@ import { cartReducer, itemReducer } from "./Reducer";
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("Cart"))
@@ -23,12 +23,12 @@ export const CartProvider = ({ children }) => {
     cart,
   });
 
-const [itemState, itemDispatch] = useReducer(itemReducer, {
-  byCategory: false,
-  byBodyLocation: false,
-  byStock: false,
-  byRating: 0,
-})
+  const [itemState, itemDispatch] = useReducer(itemReducer, {
+    byCategory: false,
+    byBodyLocation: false,
+    byStock: false,
+    byRating: 0,
+  });
 
   return (
     <CartContext.Provider
@@ -41,7 +41,7 @@ const [itemState, itemDispatch] = useReducer(itemReducer, {
         setTotal,
         setCart,
         itemState,
-        itemDispatch
+        itemDispatch,
       }}
     >
       {children}
@@ -56,26 +56,26 @@ export const CartState = () => {
 //context to pass user logged-in status across App.
 export const UserContext = createContext(null);
 
-export const UserProvider = ({children}) => {
-    const [user, setUser] = usePersistedState("user", null); 
-    
-    return (
-        <UserContext.Provider value={{user, setUser}}>
-            {children}
-        </UserContext.Provider>
-    );
+export const UserProvider = ({ children }) => {
+  const [user, setUser] = usePersistedState("user", null);
+
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
+      {children}
+    </UserContext.Provider>
+  );
 };
 
 const usePersistedState = (localStorageName, initialValue) => {
   const [state, setState] = useState(() => {
-      const storedValue = window.localStorage.getItem(localStorageName);
-  
-      return storedValue !== null ? JSON.parse(storedValue) : initialValue;
+    const storedValue = window.localStorage.getItem(localStorageName);
+
+    return storedValue !== null ? JSON.parse(storedValue) : initialValue;
   });
-  
+
   useEffect(() => {
-      window.localStorage.setItem(localStorageName, JSON.stringify(state));
+    window.localStorage.setItem(localStorageName, JSON.stringify(state));
   }, [state]);
-  
+
   return [state, setState];
-}
+};

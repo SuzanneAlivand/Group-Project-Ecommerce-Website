@@ -4,9 +4,11 @@ import styled from "styled-components";
 import { CartState } from "../context/Context";
 import Rating from "./Rating";
 import SearchBar from "./SearchBar";
+import PaginationDiv from "./PaginationDiv";
 
 const ProductsPage = () => {
   // const [products, setProducts] = useState(null);
+  const [currentItems, setCurrentItems] = useState([]);
 
   const {
     state: { cart },
@@ -35,10 +37,10 @@ const ProductsPage = () => {
   return (
     <MainWrapper>
       {products && (
-      <>
-        <SearchBar suggestions={products} />
-        <ProductsWrapper> 
-            {products.map((product) => (
+        <>
+          <SearchBar suggestions={products} />
+          <ProductsWrapper>
+            {currentItems.map((product) => (
               <ProductContainer>
                 <Link to={`/items/${product._id}`}>
                   <ProductName>{product.name}</ProductName>
@@ -48,24 +50,31 @@ const ProductsPage = () => {
                 <p>${product.price}</p>
                 <div>
                   {product.numInStock > 0 ? (
-                    <Button
-                      onClick={() => {
-                        dispatch({
-                          type: "ADD_ITEM",
-                          payload: product,
-                        });
-                      }}
-                    >
-                      Add to my cart
-                    </Button>
+                    cart.find((x) => x === product) ? (
+                      <Button style={{ backgroundColor: "lightpink" }}>
+                        Item added!
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={() => {
+                          dispatch({
+                            type: "ADD_ITEM",
+                            payload: product,
+                          });
+                        }}
+                      >
+                        Add to my cart
+                      </Button>
+                    )
                   ) : (
                     <Button disabled>Add to my cart</Button>
                   )}
                 </div>
               </ProductContainer>
             ))}
-        </ProductsWrapper> 
-      </>
+          </ProductsWrapper>
+          <PaginationDiv setCurrentItems={setCurrentItems} items={products} />
+        </>
       )}
     </MainWrapper>
   );

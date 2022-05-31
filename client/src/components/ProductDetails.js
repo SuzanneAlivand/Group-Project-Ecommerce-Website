@@ -43,16 +43,22 @@ const ProductDetails = () => {
             <CompanyId>{product.companyId}</CompanyId>
             <div>
               {product.numInStock > 0 ? (
-                <Button
-                  onClick={() => {
-                    dispatch({
-                      type: "ADD_ITEM",
-                      payload: product,
-                    });
-                  }}
-                >
-                  Add to my cart
-                </Button>
+                cart.find((x) => x === product) ? (
+                  <Button style={{ backgroundColor: "lightpink" }}>
+                    Item added!
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => {
+                      dispatch({
+                        type: "ADD_ITEM",
+                        payload: product,
+                      });
+                    }}
+                  >
+                    Add to my cart
+                  </Button>
+                )
               ) : (
                 <Button disabled>Add to my cart</Button>
               )}

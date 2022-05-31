@@ -10,7 +10,7 @@ const options = {
 };
 
 const register = async (req, res) => {
-  const { userName, email, password } = req.body;
+  const { userName, email, password, secondPassword } = req.body;
   // password encryption
   const user = {
     email: req.body.email,
@@ -21,7 +21,7 @@ const register = async (req, res) => {
     ).toString(),
   };
 
-  if (!userName || !email || !password) {
+  if (!userName || !email || !password || !secondPassword) {
     return res.status(400).json({
       status: 400,
       message: "Please provide your information!",
@@ -30,6 +30,11 @@ const register = async (req, res) => {
     return res.status(400).json({
       status: 400,
       message: "Password must be at least 6 characters long!",
+    });
+  } else if (password !== secondPassword) {
+    return res.status(400).json({
+      status: 400,
+      message: "Password and confirm password does not match!",
     });
   } else {
     try {
@@ -43,7 +48,7 @@ const register = async (req, res) => {
           .status(400)
           .json({ status: 400, message: "This email already exist!" });
       } else {
-        const NewUser = await Object.assign({ _id: uuidv4() }, user);
+        const NewUser = Object.assign({ _id: uuidv4() }, user);
         await db.collection("users").insertOne(NewUser);
         res.status(201).json({ status: 201, message: "New user added!" });
         client.close();
