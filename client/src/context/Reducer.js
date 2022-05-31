@@ -49,6 +49,8 @@ export const itemReducer = (state, action) => {
         return {...state, byBodyLocation: action.payload}
     case "SORT_BY_PRICE":
       return { ...state, sort: action.payload };
+      case "SORT_BY_STOCK":
+        return { ...state, byStock: !state.payload };
     case "FILTER_BY_RATING":
       return { ...state, byRating: action.payload };
     case "CLEAR_FILTERS":
