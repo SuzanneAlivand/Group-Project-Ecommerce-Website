@@ -1,9 +1,11 @@
 import styled from "styled-components";
+import { CartState } from "../context/Context";
 
 const Confirmation = () => {
   const getCheckOutData = JSON.parse(sessionStorage.getItem("CheckoutData"));
   console.log("get", getCheckOutData);
 
+  const { total } = CartState();
   return (
     <ConfirmationWrapper>
       <TitleConfirmation>
@@ -23,7 +25,12 @@ const Confirmation = () => {
             </>
           </ItemContainer>
         ))}
-        <TotalPrice>Total: ${getCheckOutData.total.toFixed(2)}</TotalPrice>
+        <TotalPrice>
+          Total: $
+          {getCheckOutData
+            ? getCheckOutData.total.toFixed(2)
+            : total.toFixed(2)}
+        </TotalPrice>
       </OrderSummary>
     </ConfirmationWrapper>
   );
