@@ -5,7 +5,7 @@ import {
   useReducer,
   useContext,
 } from "react";
-import { cartReducer } from "./Reducer";
+import { cartReducer, itemReducer } from "./Reducer";
 
 export const CartContext = createContext();
 
@@ -23,6 +23,13 @@ export const CartProvider = ({ children }) => {
     cart,
   });
 
+const [itemState, itemDispatch] = useReducer(itemReducer, {
+  byCategory: false,
+  byBodyLocation: false,
+  byStock: false,
+  byRating: 0,
+})
+
   return (
     <CartContext.Provider
       value={{
@@ -32,7 +39,9 @@ export const CartProvider = ({ children }) => {
         setProducts,
         total,
         setTotal,
-        setCart
+        setCart,
+        itemState,
+        itemDispatch
       }}
     >
       {children}
