@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { CartState } from "../context/Context";
 
-const Filters = () => {
+const Filters = ({ reload, setReload }) => {
   const {
     itemState: { byCategory, byBodyLocation, sort, byStock, byRating },
     itemDispatch,
+    products,
+    setProducts,
   } = CartState();
 
   console.log(
@@ -22,13 +24,15 @@ const Filters = () => {
         Ascending
         <input
           type="radio"
-          name="sortByPrice"
-          onChange={() =>
+          name="filterGroup"
+          onChange={() => {
+            setReload(!reload);
+            // setProducts(filterItems());
             itemDispatch({
               type: "SORT_BY_PRICE",
               payload: "lowToHigh",
-            })
-          }
+            });
+          }}
           checked={sort === "lowToHigh" ? true : false}
         />
       </label>
@@ -36,42 +40,55 @@ const Filters = () => {
         Descending
         <input
           type="radio"
-          name="sortByPrice"
-          onChange={() =>
+          name="filterGroup"
+          onChange={() => {
+            setReload(!reload);
+            // setProducts(filterItems());
             itemDispatch({
-              type: "SORT_BY_STOCK",
+              type: "SORT_BY_PRICE",
               payload: "highToLow",
-            })
-          }
+            });
+          }}
           checked={sort === "highToLow" ? true : false}
         />
       </label>
+
       <label>
         Only on stock
-        <input type="checkbox" name="byStock"
-          onChange={() =>
+        <input
+          type="checkbox"
+          name="filterGroup"
+          onClick={() => {
+            setReload(!reload);
+
+            // setProducts(filterItems());
             itemDispatch({
-              type: "SORT_BY_PRICE",
-            })
-          }
+              type: "SORT_BY_STOCK",
+            });
+          }}
           checked={byStock}
         />
       </label>
-      <label>
+      {/* <label>
         By category
         <input type="checkbox" name="only-stock" />
       </label>
       <label>
         By rating
         <input type="checkbox" name="only-stock" />
-      </label>
+      </label> */}
 
-      <button type="button" value="clear"
-      onClick={() =>
-        itemDispatch({
+      <button
+        type="button"
+        value="clear"
+        onClick={() =>
+          itemDispatch({
             type: "CLEAR_FILTERS",
-        }) }
-      >Clear Filters</button>
+          })
+        }
+      >
+        Clear Filters
+      </button>
     </FilterForm>
   );
 };
