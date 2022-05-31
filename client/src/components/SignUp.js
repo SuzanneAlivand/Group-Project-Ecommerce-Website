@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { UserContext } from "../context/Context";
 import { useHistory } from "react-router-dom";
 
@@ -11,7 +11,7 @@ const SignUp = () => {
   const [signUpMessage, setSignUpMessage] = useState(null);
   const [secondPassword, setSecondPassword] = useState(null);
 
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
 
   const history = useHistory();
 
@@ -33,11 +33,11 @@ const SignUp = () => {
         }),
       });
       const json = await data.json();
-      console.log(json);
       setSignUpMessage(json.message);
-      console.log(json);
       setUser(userName);
-      history.push("/");
+      if (json.status === 201) {
+        history.push("/");
+      }
     } catch (error) {
       console.log("ERROR:", error.message);
     }
