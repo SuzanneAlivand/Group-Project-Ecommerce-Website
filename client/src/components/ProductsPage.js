@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CartState } from "../context/Context";
 import Rating from "./Rating";
+import SearchBar from "./SearchBar";
 
 const ProductsPage = () => {
   // const [products, setProducts] = useState(null);
@@ -32,44 +33,56 @@ const ProductsPage = () => {
   console.log(cart);
 
   return (
-    <Wrapper>
-      {products &&
-        products.map((product) => (
-          <ProductContainer>
-            <Link to={`/items/${product._id}`}>
-              <ProductName>{product.name}</ProductName>
-              <ProductImg src={product.imageSrc}></ProductImg>
-            </Link>
-            <Rating value={product.rating} />
-            <p>${product.price}</p>
-            <div>
-              {product.numInStock > 0 ? (
-                <Button
-                  onClick={() => {
-                    dispatch({
-                      type: "ADD_ITEM",
-                      payload: product,
-                    });
-                  }}
-                >
-                  Add to my cart
-                </Button>
-              ) : (
-                <Button disabled>Add to my cart</Button>
-              )}
-            </div>
-          </ProductContainer>
-        ))}
-    </Wrapper>
+    <MainWrapper>
+      {products && (
+      <>
+        <SearchBar suggestions={products} />
+        <ProductsWrapper> 
+            {products.map((product) => (
+              <ProductContainer>
+                <Link to={`/items/${product._id}`}>
+                  <ProductName>{product.name}</ProductName>
+                  <ProductImg src={product.imageSrc}></ProductImg>
+                </Link>
+                <Rating value={product.rating} />
+                <p>${product.price}</p>
+                <div>
+                  {product.numInStock > 0 ? (
+                    <Button
+                      onClick={() => {
+                        dispatch({
+                          type: "ADD_ITEM",
+                          payload: product,
+                        });
+                      }}
+                    >
+                      Add to my cart
+                    </Button>
+                  ) : (
+                    <Button disabled>Add to my cart</Button>
+                  )}
+                </div>
+              </ProductContainer>
+            ))}
+        </ProductsWrapper> 
+      </>
+      )}
+    </MainWrapper>
   );
 };
 export default ProductsPage;
 
-const Wrapper = styled.div`
+const MainWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ProductsWrapper = styled.div`
   display: grid;
   justify-items: center;
   grid-template: 1fr 1fr / 1fr 1fr 1fr;
-  row-gap: 40px;
+  gap: 100px;
   margin: 70px;
   a {
     text-decoration: none;
