@@ -3,10 +3,14 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { CartState } from "../context/Context";
 import Rating from "./Rating";
+import SpinnerOne from "./spinners/SpinnerOne";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const { itemId } = useParams();
+
+  // for adding spinner, we define a loading state
+  const [loaded, setLoaded] = useState(false);
 
   const {
     state: { cart },
@@ -24,47 +28,52 @@ const ProductDetails = () => {
       const data = await fetch(`/api/items/${itemId}`);
       const json = await data.json();
       setProduct(json.data);
+      setLoaded(true);
     };
     fetchProduct();
   }, []);
 
   return (
     <ProductWrapper>
-      {product && (
-        <>
-          <Image src={product.imageSrc} />
-          <InfoWrapper>
-            <Name>{product.name}</Name>
-            <Rating value={product.rating} />
-            <Price>${product.price}</Price>
-            <BodyLocation>{product.body_location}</BodyLocation>
-            <Category>{product.category}</Category>
-            <Stock>{product.numInStock}</Stock>
-            <CompanyId>{product.companyId}</CompanyId>
-            <div>
-              {product.numInStock > 0 ? (
-                cart.find((x) => x === product) ? (
-                  <Button style={{ backgroundColor: "lightpink" }}>
-                    Item added!
-                  </Button>
+      {loaded ? (
+        product && (
+          <>
+            <Image src={product.imageSrc} />
+            <InfoWrapper>
+              <Name>{product.name}</Name>
+              <Rating value={product.rating} />
+              <Price>${product.price}</Price>
+              <BodyLocation>{product.body_location}</BodyLocation>
+              <Category>{product.category}</Category>
+              <Stock>{product.numInStock}</Stock>
+              <CompanyId>{product.companyId}</CompanyId>
+              <div>
+                {product.numInStock > 0 ? (
+                  cart.find((x) => x === product) ? (
+                    <Button style={{ backgroundColor: "lightpink" }}>
+                      Item added!
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={() => {
+                        dispatch({
+                          type: "ADD_ITEM",
+                          payload: product,
+                        });
+                      }}
+                    >
+                      Add to my cart
+                    </Button>
+                  )
                 ) : (
-                  <Button
-                    onClick={() => {
-                      dispatch({
-                        type: "ADD_ITEM",
-                        payload: product,
-                      });
-                    }}
-                  >
-                    Add to my cart
-                  </Button>
-                )
-              ) : (
-                <Button disabled>Add to my cart</Button>
-              )}
-            </div>
-          </InfoWrapper>
-        </>
+                  <Button disabled>Add to my cart</Button>
+                )}
+              </div>
+            </InfoWrapper>
+          </>
+        )
+      ) : (
+        <SpinnerOne />
       )}
     </ProductWrapper>
   );
