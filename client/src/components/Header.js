@@ -148,6 +148,7 @@ const Header = () => {
     </HeaderSection>
   );
 };
+
 export default Header;
 
 const LoginDesign = styled.span`
@@ -166,18 +167,18 @@ const HeaderSection = styled.header`
 `;
 
 const NavLinkStyled = styled(NavLink)`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  gap: 10px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 10px;
 `;
 
 const LinkStyled = styled(Link)`
-  text-decoration: none;
-  display: flex;
-  gap: 11px;
-  align-items: center;
-  justify-content: flex-start;
+    text-decoration: none;
+    display: flex;
+    gap: 11px;
+    align-items: center;
+    justify-content: flex-start;
 `;
 
 const CartBtn = styled.button`
@@ -197,17 +198,15 @@ const CartCount = styled.div`
 `;
 
 const CartWrapper = styled.div`
-  padding: 10px;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  box-shadow: 5px 15px 31px 4px #dfdfdf;
-  top: 65px;
-  z-index: 2;
-  display: ${(p) =>
-    !p.isOpen &&
-    "none"}; //passing a prop to determine display none or not. Otherwise a box-shadow on the div shows when cart is closed.
+    padding: 10px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 5px 15px 31px 4px #dfdfdf;
+    top: 65px;   
+    z-index: 2;
+    display: ${(p) => !p.isOpen && "none"}  //passing a prop to determine display none or not. Otherwise a box-shadow on the div shows when cart is closed.
 `;
 
 const CartBtnWrapper = styled.div`
@@ -230,9 +229,9 @@ const ProductLink = styled(Link)`
 `;
 
 const Avatar = styled.img`
-  width: 40px;
-  border-radius: 50%;
-  padding-right: 8px;
+    width: 40px; 
+    border-radius: 50%;
+    padding-right: 8px;
 `;
 
 const NamePriceDiv = styled.div`
@@ -260,6 +259,7 @@ const BtnGoToCart = styled.button`
     background-color: var(--color-secondary);
   }
 `;
+
 const Greeting = styled.div`
   font-weight: bold;
   text-decoration: none;
@@ -273,8 +273,9 @@ const UserMenuWrapper = styled(CartWrapper)`
 `;
 
 const MenuItem = styled(ProductWrapper)`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 11px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 11px;
 `;
