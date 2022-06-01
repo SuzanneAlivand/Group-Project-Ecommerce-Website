@@ -43,22 +43,40 @@ export const cartReducer = (state, action) => {
 // Reducer - to filter the items
 export const itemReducer = (state, action) => {
   switch (action.type) {
-    case "SORT_BY_CATEGORY":
-      return { ...state, byCategory: action.payload };
-    case "SORT_BY_LOCATION":
-      return { ...state, byBodyLocation: action.payload };
     case "SORT_BY_PRICE":
       return { ...state, sort: action.payload };
     case "SORT_BY_STOCK":
       return { ...state, byStock: !state.byStock };
-    case "FILTER_BY_RATING":
+
+    case "CATEGORY_FITNESS":
+      return { ...state, byCategoryFitness: !state.byCategoryFitness };
+    case "CATEGORY_MEDICAL":
+      return { ...state, byCategoryMedical: !state.byCategoryMedical };
+    case "CATEGORY_LIFESTYLE":
+      return { ...state, byCategoryLifestyle: !state.byCategoryLifestyle };
+     case "CATEGORY_ENTERTAINMENT":
+        return { ...state, byCategoryEntertainment: !state.byCategoryEntertainment };
+     case "CATEGORY_GAMING":
+        return { ...state, byCategoryGaming: !state.byCategoryGaming };
+     case "CATEGORY_PETS":
+        return { ...state, byCategoryPets: !state.byCategoryPets };
+       
+     case "FILTER_BY_RATING":
       return { ...state, byRating: action.payload };
+
     case "CLEAR_FILTERS":
       return {
+        
+        byCategoryFitness: false,
+        byCategoryMedical: false,
+        byCategoryLifestyle: false,
+        byCategoryEntertainment: false,
+        byCategoryGaming: false,
         byCategory: false,
         byBodyLocation: false,
         byStock: false,
         byRating: 0,
+        
       };
     default:
       return state;

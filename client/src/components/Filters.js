@@ -3,20 +3,22 @@ import { CartState } from "../context/Context";
 
 const Filters = ({ reload, setReload }) => {
   const {
-    itemState: { byCategory, byBodyLocation, sort, byStock, byRating },
+    itemState: {
+      byCategoryFitness,
+      byCategoryMedical,
+      byCategoryLifestyle,
+      byCategoryEntertainment,
+      byCategoryGaming,
+      byCategoryPets,
+      sort,
+      byStock,
+      byRating,
+    },
     itemDispatch,
     products,
     setProducts,
   } = CartState();
 
-  console.log(
-    "itemState IS",
-    byCategory,
-    byBodyLocation,
-    sort,
-    byStock,
-    byRating
-  );
 
   return (
     <FilterForm>
@@ -27,7 +29,6 @@ const Filters = ({ reload, setReload }) => {
           name="filterGroup"
           onChange={() => {
             setReload(!reload);
-            // setProducts(filterItems());
             itemDispatch({
               type: "SORT_BY_PRICE",
               payload: "lowToHigh",
@@ -36,6 +37,7 @@ const Filters = ({ reload, setReload }) => {
           checked={sort === "lowToHigh" ? true : false}
         />
       </label>
+
       <label>
         Descending
         <input
@@ -43,7 +45,6 @@ const Filters = ({ reload, setReload }) => {
           name="filterGroup"
           onChange={() => {
             setReload(!reload);
-            // setProducts(filterItems());
             itemDispatch({
               type: "SORT_BY_PRICE",
               payload: "highToLow",
@@ -60,8 +61,6 @@ const Filters = ({ reload, setReload }) => {
           name="filterGroup"
           onClick={() => {
             setReload(!reload);
-
-            // setProducts(filterItems());
             itemDispatch({
               type: "SORT_BY_STOCK",
             });
@@ -69,15 +68,101 @@ const Filters = ({ reload, setReload }) => {
           checked={byStock}
         />
       </label>
-      {/* <label>
-        By category
-        <input type="checkbox" name="only-stock" />
+
+      <p>By category</p>
+      <label>
+        Fitness
+        <input
+          type="checkbox"
+          name="filterGroup"
+          onClick={() => {
+            setReload(!reload);
+            itemDispatch({
+              type: "CATEGORY_FITNESS",
+            });
+          }}
+          checked={byCategoryFitness}
+        />
+      </label>
+
+      <label>
+        Medical
+        <input
+          type="checkbox"
+          name="filterGroup"
+          onClick={() => {
+            setReload(!reload);
+            itemDispatch({
+              type: "CATEGORY_MEDICAL",
+            });
+          }}
+          checked={byCategoryMedical}
+        />
       </label>
       <label>
-        By rating
-        <input type="checkbox" name="only-stock" />
-      </label> */}
+        Lifestyle
+        <input
+          type="checkbox"
+          name="filterGroup"
+          onClick={() => {
+            setReload(!reload);
+            itemDispatch({
+              type: "CATEGORY_LIFESTYLE",
+            });
+          }}
+          checked={byCategoryLifestyle}
+        />
+      </label>
+      <label>
+        Entertainment
+        <input
+          type="checkbox"
+          name="filterGroup"
+          onClick={() => {
+            setReload(!reload);
+            itemDispatch({
+              type: "CATEGORY_ENTERTAINMENT",
+            });
+          }}
+          checked={byCategoryEntertainment}
+        />
+      </label>
 
+      <label>
+        Gaming
+        <input
+          type="checkbox"
+          name="filterGroup"
+          onClick={() => {
+            setReload(!reload);
+            itemDispatch({
+              type: "CATEGORY_GAMING",
+            });
+          }}
+          checked={byCategoryGaming}
+        />
+      </label>
+      <label>
+      Pets and Animals
+        <input
+          type="checkbox"
+          name="filterGroup"
+          onClick={() => {
+            setReload(!reload);
+            itemDispatch({
+              type: "CATEGORY_PETS",
+            });
+          }}
+          checked={byCategoryPets}
+        />
+      </label>
+
+
+
+      {/* <label>
+            By rating
+            <input type="checkbox" name="only-stock" />
+          </label> */}
       <button
         type="button"
         value="clear"

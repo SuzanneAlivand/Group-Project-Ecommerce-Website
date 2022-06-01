@@ -24,8 +24,12 @@ export const CartProvider = ({ children }) => {
   });
 
   const [itemState, itemDispatch] = useReducer(itemReducer, {
-    byCategory: false,
-    byBodyLocation: false,
+    byCategoryFitness: false,
+    byCategoryMedical: false,
+    byCategoryLifestyle: false,
+    byCategoryEntertainment: false,
+    byCategoryGaming: false,
+    byCategoryPets: false,
     byStock: false,
     byRating: 0,
   });

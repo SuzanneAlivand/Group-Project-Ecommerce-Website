@@ -14,13 +14,22 @@ const ProductsPage = () => {
 
   const {
     state: { cart },
-    itemState: { byCategory, byBodyLocation, sort, byStock, byRating },
+    itemState: {
+      byCategoryFitness,
+      byCategoryMedical,
+      byCategoryLifestyle,
+      byCategoryEntertainment,
+      byCategoryGaming,
+      byCategoryPets,
+      sort,
+      byStock,
+      byRating,
+    },
     dispatch,
     products,
     setProducts,
   } = CartState();
 
-  const [filteredProductsArray, setFilteredProductsArray] = useState([]);
   // storing data
   useEffect(() => {
     localStorage.setItem("Cart", JSON.stringify(cart));
@@ -38,11 +47,38 @@ const ProductsPage = () => {
       filteredProduct = filteredProduct.filter(
         (product) => product.numInStock > 0
       );
-      console.log("filteredProductBYSTOCK", filteredProduct);
     }
-    //  setFilteredProductsArray(filteredProduct);
-    console.log("im tired");
-    // setProducts(filteredProduct)
+    if (byCategoryFitness) {
+      filteredProduct = filteredProduct.filter(
+        (product) => product.category === "Fitness"
+      );
+    }
+    if (byCategoryMedical) {
+      filteredProduct = filteredProduct.filter(
+        (product) => product.category === "Medical"
+      );
+    }
+    if (byCategoryLifestyle) {
+      filteredProduct = filteredProduct.filter(
+        (product) => product.category === "Lifestyle"
+      );
+    }
+    if (byCategoryEntertainment) {
+      filteredProduct = filteredProduct.filter(
+        (product) => product.category === "Entertainment"
+      );
+    }
+    if (byCategoryGaming) {
+      filteredProduct = filteredProduct.filter(
+        (product) => product.category === "Gaming"
+      );
+    }
+    if (byCategoryPets) {
+      filteredProduct = filteredProduct.filter(
+        (product) => product.category === "Pets and Animals"
+      );
+    }
+
     return filteredProduct;
   };
 
@@ -56,7 +92,6 @@ const ProductsPage = () => {
     fetchProducts();
   }, [reload]);
 
-  console.log(cart);
   console.log("products", products);
 
   return (
