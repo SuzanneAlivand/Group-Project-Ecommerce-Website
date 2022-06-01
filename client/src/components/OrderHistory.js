@@ -9,15 +9,16 @@ const OrderHistory = () => {
     const {userName} = useParams();
     const {user, setUser} = useContext(UserContext);
 
+    //state variable for spinner-loader icon
     const [loaded, setLoaded] = useState(false);
     
+    //fetch user's previous orders
     useEffect(() => {
         const fetchOrders = async () => {
             const data = await fetch(`/api/user/${userName}`);
             const json = await data.json();
             setOrders(json.data);
             setLoaded(true);
-            console.log(json.data);
         };
         fetchOrders();
     },[]);
@@ -25,6 +26,8 @@ const OrderHistory = () => {
     return (
         <Wrapper> 
             <Header>Order History</Header>
+            {/* spinner loads until orders are loaded into state AND user is already authenticated */}
+            {/* maps out each order */}
             {loaded ? ((user && orders) && orders.map(order => 
             <OrderWrapper>
                 <OrderInfo>
@@ -32,7 +35,7 @@ const OrderHistory = () => {
                     <OrderShipTo>SHIPPED TO: {order.givenName} {order.surname}</OrderShipTo>
                     <OrderNum>ORDER #: {order._id}</OrderNum>
                 </OrderInfo>
-
+                {/* maps out each product purchased in the order */}
                 {order.cart.map((item) => (
                 <ItemContainer>
                     <img src={item.imageSrc} />
