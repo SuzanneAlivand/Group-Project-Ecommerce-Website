@@ -27,6 +27,7 @@ const Filters = ({ reload, setReload }) => {
       <label>
         Ascending
         <input
+         className="radioBtn"
           type="radio"
           name="filterGroup"
           onChange={() => {
@@ -71,7 +72,7 @@ const Filters = ({ reload, setReload }) => {
         />
       </label>
 
-      <p>By category</p>
+      <p>BY CATEGORY</p>
       <label>
         Fitness
         <input
@@ -184,7 +185,23 @@ const Filters = ({ reload, setReload }) => {
 const FilterForm = styled.form`
   display: flex;
   flex-direction: column;
+  /* padding: 10px; */
+
+  input {
+    padding: 20px;
+    font-size: 2em;
+
+    &.radioBtn {
+      font-size: 2em;
+    color: yellow;
+    padding: 20px;
+  }
+
+  }
+
 `;
+
+
 
 const FormTitle = styled.p`
 text-align: center;
