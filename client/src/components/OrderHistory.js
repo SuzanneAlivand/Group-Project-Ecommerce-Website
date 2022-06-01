@@ -1,10 +1,12 @@
 import styled from "styled-components";
-import { useEffect, useState  } from "react";
+import { useContext, useEffect, useState  } from "react";
 import { useParams, Link } from "react-router-dom";
+import { UserContext } from "../context/Context";
 
 const OrderHistory = () => {
     const [orders, setOrders] = useState(null);
     const {userName} = useParams();
+    const {user, setUser} = useContext(UserContext);
     
     useEffect(() => {
         const fetchOrders = async () => {
@@ -19,7 +21,7 @@ const OrderHistory = () => {
     return (
         <Wrapper> 
             <Header>Order History</Header>
-            {orders && orders.map(order => 
+            {user && orders && orders.map(order => 
             <OrderWrapper>
                 <OrderInfo>
                     <OrderTotal>TOTAL: ${order.total}</OrderTotal>
