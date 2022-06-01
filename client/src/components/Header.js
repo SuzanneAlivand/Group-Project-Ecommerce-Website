@@ -80,7 +80,8 @@ const Header = () => {
                                         <Price>${product.price}</Price>                                
                                     </NamePriceDiv>
                                 </ProductLink>
-                                <AiFillDelete style={{"cursor":"pointer"}} onClick={() => {
+                                <AiFillDelete style={{"cursor":"pointer"}} onClick={(e) => {
+                                    e.stopPropagation();
                                     dispatch({
                                         type: "REMOVE_ITEM",
                                         payload: product._id,

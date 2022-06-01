@@ -24,7 +24,6 @@ const ProductDetails = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      //to be modified later when endpoints and handlers have been created
       const data = await fetch(`/api/items/${itemId}`);
       const json = await data.json();
       setProduct(json.data);
@@ -34,55 +33,72 @@ const ProductDetails = () => {
   }, []);
 
   return (
-    <ProductWrapper>
-      {loaded ? (
-        product && (
-          <>
-            <Image src={product.imageSrc} />
-            <InfoWrapper>
-              <Name>{product.name}</Name>
-              <Rating value={product.rating} />
-              <Price>${product.price}</Price>
-              <BodyLocation>{product.body_location}</BodyLocation>
-              <Category>{product.category}</Category>
-              <Stock>{product.numInStock}</Stock>
-              <CompanyId>{product.companyId}</CompanyId>
-              <div>
-                {product.numInStock > 0 ? (
-                  cart.find((x) => x === product) ? (
-                    <Button style={{ backgroundColor: "lightpink" }}>
-                      Item added!
-                    </Button>
+    <Wrapper>
+      <ProductWrapper>
+        {loaded ? (
+          product && (
+            <>
+              <Image src={product.imageSrc} />
+              <InfoWrapper>
+                <Name>{product.name}</Name>
+                <Rating value={product.rating} />
+                <Price>${product.price}</Price>
+                <BodyLocation>For: {product.body_location}</BodyLocation>
+                <Category>Category: {product.category}</Category>
+                <Stock>Qty In Stock: {product.numInStock}</Stock>
+                {/* <CompanyId>{product.companyId}</CompanyId> */}
+                <div>
+                  {product.numInStock > 0 ? (
+                    cart.find((x) => x._id === product._id) ? (
+                      <Button style={{ backgroundColor: "lightpink" }}>
+                        Item added!
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={() => {
+                          dispatch({
+                            type: "ADD_ITEM",
+                            payload: product,
+                          });
+                        }}
+                      >
+                        Add to my cart
+                      </Button>
+                    )
                   ) : (
-                    <Button
-                      onClick={() => {
-                        dispatch({
-                          type: "ADD_ITEM",
-                          payload: product,
-                        });
-                      }}
-                    >
-                      Add to my cart
-                    </Button>
-                  )
-                ) : (
-                  <Button disabled>Add to my cart</Button>
-                )}
-              </div>
-            </InfoWrapper>
-          </>
-        )
-      ) : (
-        <SpinnerOne />
-      )}
-    </ProductWrapper>
+                    <Button disabled>Out Of Stock</Button>
+                  )}
+                </div>
+              </InfoWrapper>
+            </>
+          )
+        ) : (
+          <SpinnerOne />
+        )}
+      </ProductWrapper>
+    </Wrapper>  
   );
 };
 export default ProductDetails;
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+  height: 70vh;
+`;
+
 const ProductWrapper = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
   gap: 50px;
+  padding: 30px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 15px 31px 4px #dfdfdf;
 `;
 
 const InfoWrapper = styled.div`
@@ -91,12 +107,12 @@ const InfoWrapper = styled.div`
 `;
 
 const Image = styled.img`
-  width: 400px;
+  width: 500px;
   border-radius: 20px;
 `;
 
 const Name = styled.div`
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bold;
 `;
 
@@ -107,18 +123,19 @@ const Price = styled.div`
 `;
 
 const BodyLocation = styled.div`
-  font-size: 32px;
+  font-size: 22px;
   font-weight: bold;
 `;
 
 const Category = styled.div`
-  font-size: 32px;
+  font-size: 22px;
   font-weight: bold;
 `;
 
 const Stock = styled.div`
-  font-size: 32px;
+  font-size: 22px;
   font-weight: bold;
+  margin-bottom: 10px;
 `;
 
 const CompanyId = styled.div`
