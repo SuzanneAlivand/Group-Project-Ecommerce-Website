@@ -96,9 +96,14 @@ const SearchBar = ({suggestions}) => {
 export default SearchBar;
 
 const Wrapper = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+padding-bottom: 40px;
 `;
 
 const Input = styled.input`
+    margin-bottom: 20px;
     height: 2rem;
     width: 250px;
     border-radius: 3px;

@@ -21,6 +21,8 @@ const Filters = ({ reload, setReload }) => {
 
 
   return (
+    <>
+    <FormTitle>FILTERS</FormTitle>
     <FilterForm>
       <label>
         Ascending
@@ -163,7 +165,7 @@ const Filters = ({ reload, setReload }) => {
             By rating
             <input type="checkbox" name="only-stock" />
           </label> */}
-      <button
+      <Button
         type="button"
         value="clear"
         onClick={() =>
@@ -173,8 +175,9 @@ const Filters = ({ reload, setReload }) => {
         }
       >
         Clear Filters
-      </button>
+      </Button>
     </FilterForm>
+    </>
   );
 };
 
@@ -182,5 +185,13 @@ const FilterForm = styled.form`
   display: flex;
   flex-direction: column;
 `;
+
+const FormTitle = styled.p`
+text-align: center;
+`
+
+const Button = styled.button`
+margin-top: 20px;
+`
 
 export default Filters;

@@ -98,8 +98,11 @@ const ProductsPage = () => {
     <MainWrapper>
       {products && (
         <>
+          <LeftSection>
           <SearchBar suggestions={products} />
           <Filters reload={reload} setReload={setReload} />
+          </LeftSection>
+          <RightSection>
           <ProductsWrapper>
             {/* {currentItems.map((product) => ( */}
 
@@ -138,25 +141,42 @@ const ProductsPage = () => {
           </ProductsWrapper>
           {/* <PaginationDiv setCurrentItems={setCurrentItems} items={filteredProductsArray} /> */}
           <PaginationDiv setCurrentItems={setCurrentItems} items={products} />
+          </RightSection>
         </>
       )}
+      
     </MainWrapper>
   );
 };
 export default ProductsPage;
 
 const MainWrapper = styled.div`
+padding-top: 70px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
 `;
+
+const LeftSection = styled.div`
+padding-top: 40px;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+`
+
+const RightSection = styled.div`
+display: flex;
+flex-direction: column;
+
+`
+
 
 const ProductsWrapper = styled.div`
   display: grid;
   justify-items: center;
   grid-template: 1fr 1fr / 1fr 1fr 1fr;
   gap: 100px;
-  margin: 70px;
+  margin: 20px 70px 70px 70px;
   a {
     text-decoration: none;
     color: black;
