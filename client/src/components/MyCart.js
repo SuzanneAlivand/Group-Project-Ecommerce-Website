@@ -15,7 +15,12 @@ const MyCart = () => {
   // storing data
   useEffect(() => {
     localStorage.setItem("Cart", JSON.stringify(cart));
+    sessionStorage.setItem("Total", JSON.stringify(total.toFixed(2)));
   }, [cart]);
+
+  useEffect(() => {
+    sessionStorage.setItem("Total", JSON.stringify(total.toFixed(2)));
+  }, [total, cart]);
 
   useEffect(() => {
     setTotal(

@@ -33,7 +33,10 @@ const Checkout = () => {
     ev.preventDefault();
     const checkoutData = {
       cart: cart,
-      total: total,
+      total:
+        total.toFixed(2) != 0
+          ? total.toFixed(2)
+          : sessionStorage.getItem("Total"),
       ...formData,
     };
 
@@ -54,7 +57,6 @@ const Checkout = () => {
       })
       .catch((err) => console.log(err));
   };
-  const getCheckOutData = JSON.parse(sessionStorage.getItem("CheckoutData"));
 
   return (
     <>
@@ -65,9 +67,9 @@ const Checkout = () => {
           handleChange={handleChange}
           linkToConfirmationPage={linkToConfirmationPage}
           total={
-            getCheckOutData
-              ? getCheckOutData.total.toFixed(2)
-              : total.toFixed(2)
+            total.toFixed(2) != 0
+              ? total.toFixed(2)
+              : JSON.parse(sessionStorage.getItem("Total"))
           }
           cart={cart}
         ></Form>
