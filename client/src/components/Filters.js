@@ -19,168 +19,160 @@ const Filters = ({ reload, setReload }) => {
     setProducts,
   } = CartState();
 
-
   return (
     <>
-    <FormTitle>FILTERS</FormTitle>
-    <FilterForm>
-      <label>
-        Ascending
-        <input
-         className="radioBtn"
-          type="radio"
-          name="filterGroup"
-          onChange={() => {
-            setReload(!reload);
-            itemDispatch({
-              type: "SORT_BY_PRICE",
-              payload: "lowToHigh",
-            });
-          }}
-          checked={sort === "lowToHigh" ? true : false}
-        />
-      </label>
+      <FilterForm>
+        <CategoryTitle>PRICE</CategoryTitle>
+        <label>
+          <input
+            type="radio"
+            name="filterGroup"
+            onChange={() => {
+              setReload(!reload);
+              itemDispatch({
+                type: "SORT_BY_PRICE",
+                payload: "lowToHigh",
+              });
+            }}
+            checked={sort === "lowToHigh" ? true : false}
+          />
+          <span>Ascending</span>
+        </label>
 
-      <label>
-        Descending
-        <input
-          type="radio"
-          name="filterGroup"
-          onChange={() => {
-            setReload(!reload);
-            itemDispatch({
-              type: "SORT_BY_PRICE",
-              payload: "highToLow",
-            });
-          }}
-          checked={sort === "highToLow" ? true : false}
-        />
-      </label>
+        <label>
+          <input
+            type="radio"
+            name="filterGroup"
+            onChange={() => {
+              setReload(!reload);
+              itemDispatch({
+                type: "SORT_BY_PRICE",
+                payload: "highToLow",
+              });
+            }}
+            checked={sort === "highToLow" ? true : false}
+          />
+          <span>Descending</span>
+        </label>
 
-      <label>
-        Only on stock
-        <input
-          type="checkbox"
-          name="filterGroup"
-          onClick={() => {
-            setReload(!reload);
-            itemDispatch({
-              type: "SORT_BY_STOCK",
-            });
-          }}
-          checked={byStock}
-        />
-      </label>
+        <CategoryTitle>BY STOCK</CategoryTitle>
+        <label>
+          <input
+            type="checkbox"
+            name="filterGroup"
+            onClick={() => {
+              setReload(!reload);
+              itemDispatch({
+                type: "SORT_BY_STOCK",
+              });
+            }}
+            checked={byStock}
+          />
+          <span>Only in stock</span>
+        </label>
 
-      <p>BY CATEGORY</p>
-      <label>
-        Fitness
-        <input
-          type="checkbox"
-          name="filterGroup"
-          onClick={() => {
-            setReload(!reload);
-            itemDispatch({
-              type: "CATEGORY_FITNESS",
-            });
-          }}
-          checked={byCategoryFitness}
-        />
-      </label>
+        <CategoryTitle>BY CATEGORY</CategoryTitle>
+        <label>
+          <input
+            type="checkbox"
+            name="filterGroup"
+            onClick={() => {
+              setReload(!reload);
+              itemDispatch({
+                type: "CATEGORY_FITNESS",
+              });
+            }}
+            checked={byCategoryFitness}
+          />
+          <span>Fitness </span>
+        </label>
 
-      <label>
-        Medical
-        <input
-          type="checkbox"
-          name="filterGroup"
-          onClick={() => {
-            setReload(!reload);
-            itemDispatch({
-              type: "CATEGORY_MEDICAL",
-            });
-          }}
-          checked={byCategoryMedical}
-        />
-      </label>
-      <label>
-        Lifestyle
-        <input
-          type="checkbox"
-          name="filterGroup"
-          onClick={() => {
-            setReload(!reload);
-            itemDispatch({
-              type: "CATEGORY_LIFESTYLE",
-            });
-          }}
-          checked={byCategoryLifestyle}
-        />
-      </label>
-      <label>
-        Entertainment
-        <input
-          type="checkbox"
-          name="filterGroup"
-          onClick={() => {
-            setReload(!reload);
-            itemDispatch({
-              type: "CATEGORY_ENTERTAINMENT",
-            });
-          }}
-          checked={byCategoryEntertainment}
-        />
-      </label>
+        <label>
+          <input
+            type="checkbox"
+            name="filterGroup"
+            onClick={() => {
+              setReload(!reload);
+              itemDispatch({
+                type: "CATEGORY_MEDICAL",
+              });
+            }}
+            checked={byCategoryMedical}
+          />
+          <span>Medical</span>
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            name="filterGroup"
+            onClick={() => {
+              setReload(!reload);
+              itemDispatch({
+                type: "CATEGORY_LIFESTYLE",
+              });
+            }}
+            checked={byCategoryLifestyle}
+          />
+          <span>Lifestyle</span>
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            name="filterGroup"
+            onClick={() => {
+              setReload(!reload);
+              itemDispatch({
+                type: "CATEGORY_ENTERTAINMENT",
+              });
+            }}
+            checked={byCategoryEntertainment}
+          />
+          <span>Entertainment</span>
+        </label>
 
-      <label>
-        Gaming
-        <input
-          type="checkbox"
-          name="filterGroup"
-          onClick={() => {
-            setReload(!reload);
-            itemDispatch({
-              type: "CATEGORY_GAMING",
-            });
-          }}
-          checked={byCategoryGaming}
-        />
-      </label>
-      <label>
-      Pets and Animals
-        <input
-          type="checkbox"
-          name="filterGroup"
-          onClick={() => {
-            setReload(!reload);
-            itemDispatch({
-              type: "CATEGORY_PETS",
-            });
-          }}
-          checked={byCategoryPets}
-        />
-      </label>
-
-
-
-      {/* <label>
-            By rating
-            <input type="checkbox" name="only-stock" />
-          </label> */}
-      <Button
-        type="button"
-        value="clear"
-        onClick={() => {
-            setReload(!reload);
-            itemDispatch({
-              type: "CLEAR_FILTERS",
-            });        
-        }
-
-        }
-      >
-        Clear Filters
-      </Button>
-    </FilterForm>
+        <label>
+          <input
+            type="checkbox"
+            name="filterGroup"
+            onClick={() => {
+              setReload(!reload);
+              itemDispatch({
+                type: "CATEGORY_GAMING",
+              });
+            }}
+            checked={byCategoryGaming}
+          />
+          <span>Gaming</span>
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            name="filterGroup"
+            onClick={() => {
+              setReload(!reload);
+              itemDispatch({
+                type: "CATEGORY_PETS",
+              });
+            }}
+            checked={byCategoryPets}
+          />
+          <span>Pets and Animals</span>
+        </label>
+        <BtnWrapper>
+          <Button
+            type="button"
+            value="clear"
+            onClick={() => {
+              setReload(!reload);
+              itemDispatch({
+                type: "CLEAR_FILTERS",
+              });
+            }}
+          >
+            Clear Filters
+          </Button>
+        </BtnWrapper>
+      </FilterForm>
     </>
   );
 };
@@ -188,30 +180,38 @@ const Filters = ({ reload, setReload }) => {
 const FilterForm = styled.form`
   display: flex;
   flex-direction: column;
-  /* padding: 10px; */
 
-  input {
-    padding: 20px;
-    font-size: 2em;
-
-    &.radioBtn {
-      font-size: 2em;
-    color: yellow;
-    padding: 20px;
+  label {
+    padding-left: 20px;
+    font-size: 1.2em;
   }
 
+  input[type="radio"],
+  input[type="checkbox"] {
+    background-color: #fff;
+    margin: 10px;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid;
+    border-radius: 50%;
   }
-
 `;
 
-
-
-const FormTitle = styled.p`
-text-align: center;
-`
+const CategoryTitle = styled.div`
+  font-size: 1.4em;
+  padding-top: 40px;
+  padding-bottom: 10px;
+`;
 
 const Button = styled.button`
-margin-top: 20px;
-`
+  margin-top: 40px;
+  padding: 5px 20px;
+  border-radius: 5px;
+`;
+
+const BtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 export default Filters;
