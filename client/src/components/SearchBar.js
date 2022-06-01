@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 
 const SearchBar = ({suggestions}) => {
     const [value, setValue] = useState(""); //value is the word being entered in search bar; improve name later
-    const [productId, setProductId] = useState(null);
     const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(0);
     const [dropDownVisible, setDropDownVisible] = useState(true);
 
@@ -13,19 +12,15 @@ const SearchBar = ({suggestions}) => {
     let firstHalf = "";
     let secondHalf = "";
     let stringIndex = 0;
-    // let categoryName = "";
-    // let groupedSuggestions = [];
     
     let matchedSuggestions = suggestions.filter(product => {
         return (product.name.toLowerCase().includes(value.toLowerCase()));
     }).slice(0,4);
 
-    //maybe remove this?
     const handleKeyPress = (e) => {
         switch(e.key) {
             case "Enter": {
                 if(matchedSuggestions.length !== 0 && e.target.value.length !== 0) {
-                    // history.push(`/items/${product._id}`);
                     history.push(`/items/${matchedSuggestions[selectedSuggestionIndex]._id}`);
                 }
                 return;

@@ -11,6 +11,7 @@ const Header = () => {
     const [toggleCart, setToggleCart] = useState(false);
     const [toggleUserMenu, setToggleUserMenu] = useState(false);
     const cartBtnRef = useRef();
+    const userMenuRef = useRef();
     const location = useLocation();
 
     const {
@@ -24,8 +25,8 @@ const Header = () => {
 
     useEffect(() => {
         const closeCart = (e) => {
-            (console.log(e.target));
-            console.log(e.composedPath());
+            // (console.log(e.target));
+            // console.log(e.composedPath());
             if(e.path[0] !== cartBtnRef.current 
                 && e.path[1] !== cartBtnRef.current 
                 && e.path[2] !== cartBtnRef.current 
@@ -39,6 +40,24 @@ const Header = () => {
             document.body.removeEventListener("click", closeCart);
         })
     }, []);
+
+    useEffect(() => {
+        const closeUserMenu = (e) => {
+            // (console.log(e.target));
+            // console.log(e.composedPath());
+            if(e.path[0] !== userMenuRef.current 
+                && e.path[1] !== userMenuRef.current 
+                && e.path[2] !== userMenuRef.current 
+                && e.path[3] !== userMenuRef.current) {
+                    setToggleUserMenu(false);
+            }           
+        }
+        document.body.addEventListener("click", closeUserMenu);
+
+        return (() => {
+            document.body.removeEventListener("click", closeUserMenu);
+        })
+    }, []);    
 
     const handleLogout = () => {
         setUser(null);
@@ -55,34 +74,39 @@ const Header = () => {
                         <FaShoppingCart color="white" size={20} />
                         <CartCount>{cart.length}</CartCount>
                     </CartBtn>
-                    <CartWrapper>
+                    <CartWrapper isOpen={toggleCart && cart.length > 0 ? true : false}>
                         {toggleCart && cart.map(product => (
                             <ProductWrapper>
-                                <Avatar src={product.imageSrc} />
-                                <NamePriceDiv>
-                                    <Name>{product.name}</Name>   
-                                    <Price>${product.price}</Price>                                
-                                </NamePriceDiv>
-                                <AiFillDelete onClick={() => {
+                                <ProductLink to={`/items/${product._id}`}>
+                                    <Avatar src={product.imageSrc} />
+                                    <NamePriceDiv>
+                                        <Name>{product.name}</Name>   
+                                        <Price>${product.price}</Price>                                
+                                    </NamePriceDiv>
+                                </ProductLink>
+                                <AiFillDelete style={{"cursor":"pointer"}} onClick={() => {
                                     dispatch({
                                         type: "REMOVE_ITEM",
                                         payload: product._id,
-                                    })}} />
+                                    })}} />                             
                             </ProductWrapper>                
                         ))}
                         {toggleCart && cart.length > 0 && <BtnGoToCart><Link to="/cart">Go To Cart</Link></BtnGoToCart>}       
                     </CartWrapper>                    
                 </CartBtnWrapper>                           
             )}
-            <NavLinkStyled to={user ? "/user" : "/login"} onClick={() => setToggleUserMenu(!toggleUserMenu)}>
-                <CgProfile size={30} color="blue"/>
-                {user ? <Greeting>Welcome, {user}</Greeting> : "Login"}
-                {user && toggleUserMenu && (
-                    <UserMenuWrapper>
-                        <MenuItem><LinkStyled to="/user">Your profile</LinkStyled></MenuItem>
-                        <MenuItem onClick={handleLogout}>Log Out</MenuItem>
-                    </UserMenuWrapper>
-                )}
+            <NavLinkStyled 
+                to={!user && "/login"} 
+                onClick={() => setToggleUserMenu(!toggleUserMenu)} 
+                ref={userMenuRef}>
+                    <CgProfile size={30} color="blue"/>
+                    {user ? <Greeting>Welcome, {user}</Greeting> : "Login"}
+                    {user && toggleUserMenu && (
+                        <UserMenuWrapper>
+                            <MenuItem><LinkStyled to={`/user/${user}`}>Order History</LinkStyled></MenuItem>
+                            <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+                        </UserMenuWrapper>
+                    )}
             </NavLinkStyled> 
         </HeaderSection>
     );
@@ -133,9 +157,10 @@ const CartWrapper = styled.div`
     flex-direction: column;
     background-color: white;
     box-shadow: 5px 15px 31px 4px #dfdfdf;
-    /* border: 1px blue solid; */
     top: 65px;   
     z-index: 2;
+    display: ${(p) => !p.isOpen && "none"}
+    
 `;
 
 const CartBtnWrapper = styled.div`
@@ -148,8 +173,13 @@ const ProductWrapper = styled.div`
     justify-content: space-between;
 
     &:hover {
-        background-color: lightgray;
+        background-color: whitesmoke;
     }
+`;
+
+const ProductLink = styled(Link)`
+    text-decoration: none;
+    display: flex;
 `;
 
 const Avatar = styled.img`
