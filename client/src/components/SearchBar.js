@@ -60,8 +60,6 @@ const SearchBar = ({suggestions}) => {
                 onKeyDown={(e) => handleKeyPress(e)}
                 placeholder="Search Products"
             />
-            <Button onClick={() => setValue("")}>Clear</Button>
-
             {(value.length >= 2 && matchedSuggestions.length > 0) && (
                 <ProductList isShown={dropDownVisible}>
                     {matchedSuggestions.map((product, index) => {
@@ -117,17 +115,17 @@ const Input = styled.input`
     }
 `;
 
-const Button = styled.button`
-    height: 2rem;
-    border-radius: 3px;
-    width: 70px;
-    background: blue;
-    color: white;
+// const Button = styled.button`
+//     height: 2rem;
+//     border-radius: 3px;
+//     width: 70px;
+//     background: blue;
+//     color: white;
 
-    &:focus {
-        outline: lightblue 4px solid;
-    }       
-`;
+//     &:focus {
+//         outline: lightblue 4px solid;
+//     }       
+// `;
 
 const ProductList = styled.ul`
     position: absolute;

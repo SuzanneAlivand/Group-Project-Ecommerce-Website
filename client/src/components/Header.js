@@ -61,7 +61,7 @@ const Header = () => {
 
     return (
         <HeaderSection>
-            <NavLinkStyled exact to="/"><h1>Watchie's Warehouse of Watches</h1></NavLinkStyled>
+            <NavLinkStyled exact to="/"><h1>World Of Wearables</h1></NavLinkStyled>
             {(location.pathname !== "/cart" && location.pathname !== "/checkout") && (
                 <CartBtnWrapper>
                     <CartBtn ref={cartBtnRef} onClick={() => {
