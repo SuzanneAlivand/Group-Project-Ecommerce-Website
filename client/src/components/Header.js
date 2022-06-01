@@ -61,7 +61,7 @@ const Header = () => {
 
     return (
         <HeaderSection>
-            <NavLinkStyled exact to="/"><h1>Watchie's Warehouse of Watches</h1></NavLinkStyled>
+            <NavLinkStyled exact to="/"><h1>World Of Wearables</h1></NavLinkStyled>
             {(location.pathname !== "/cart" && location.pathname !== "/checkout") && (
                 <CartBtnWrapper>
                     <CartBtn ref={cartBtnRef} onClick={() => {
@@ -156,8 +156,7 @@ const CartWrapper = styled.div`
     box-shadow: 5px 15px 31px 4px #dfdfdf;
     top: 65px;   
     z-index: 2;
-    display: ${(p) => !p.isOpen && "none"}
-    
+    display: ${(p) => !p.isOpen && "none"}   
 `;
 
 const CartBtnWrapper = styled.div`

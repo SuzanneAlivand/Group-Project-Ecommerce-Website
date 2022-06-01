@@ -18,6 +18,7 @@ const SearchBar = ({suggestions}) => {
     }).slice(0,4);
 
     const handleKeyPress = (e) => {
+        setDropDownVisible(true);
         switch(e.key) {
             case "Enter": {
                 if(matchedSuggestions.length !== 0 && e.target.value.length !== 0) {
@@ -44,7 +45,7 @@ const SearchBar = ({suggestions}) => {
                 return;
             }
             case "Escape": {
-                setDropDownVisible(!dropDownVisible);
+                setDropDownVisible(false);
                 return;
             }
         };  
@@ -57,9 +58,8 @@ const SearchBar = ({suggestions}) => {
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 onKeyDown={(e) => handleKeyPress(e)}
+                placeholder="Search Products"
             />
-            <Button onClick={() => setValue("")}>Clear</Button>
-
             {(value.length >= 2 && matchedSuggestions.length > 0) && (
                 <ProductList isShown={dropDownVisible}>
                     {matchedSuggestions.map((product, index) => {
@@ -72,7 +72,7 @@ const SearchBar = ({suggestions}) => {
                             <ProductItem 
                                 key={product._id}
                                 style={{
-                                    backgroundColor: isSelected ? 'hsla(50deg, 100%, 80%, 0.25)' : 'transparent'
+                                    backgroundColor: isSelected ? 'lightgray' : 'transparent'
                                 }}
                                 onMouseEnter={() => {setSelectedSuggestionIndex(index)}}
                                 onClick={(e) => {
@@ -97,6 +97,7 @@ export default SearchBar;
 
 const Wrapper = styled.div`
 display: flex;
+position: relative;
 flex-direction: column;
 align-items: center;
 padding-bottom: 40px;
@@ -114,24 +115,26 @@ const Input = styled.input`
     }
 `;
 
-const Button = styled.button`
-    height: 2rem;
-    border-radius: 3px;
-    width: 70px;
-    background: blue;
-    color: white;
+// const Button = styled.button`
+//     height: 2rem;
+//     border-radius: 3px;
+//     width: 70px;
+//     background: blue;
+//     color: white;
 
-    &:focus {
-        outline: lightblue 4px solid;
-    }       
-`;
+//     &:focus {
+//         outline: lightblue 4px solid;
+//     }       
+// `;
 
 const ProductList = styled.ul`
     position: absolute;
+    top: 30px;
     border: 1px lightgray solid;
     margin-top: 5px; 
     display: ${prop => prop.isShown ? "block" : "none"};
     padding: 0;
+    background-color: whitesmoke;
     z-index: 2;
 `;
 
