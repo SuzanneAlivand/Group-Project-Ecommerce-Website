@@ -23,6 +23,7 @@ export default createGlobalStyle`
     height: 100%;
     padding: 10px;
     font-family: roboto, sans-serif;
+    /* background-color: #7DE2FE; */
   }
   /*
     Typographic tweaks!
@@ -57,6 +58,8 @@ export default createGlobalStyle`
   */
   #root, #__next {
     isolation: isolate;
+    /* --color- */
+
     /* --color-cadmium-red: #D80026;
     --color-alabama-crimson: #AA001E;
     --color-orange: #F79D00;

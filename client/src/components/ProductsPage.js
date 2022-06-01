@@ -168,13 +168,15 @@ const MainWrapper = styled.div`
 `;
 
 const LeftSection = styled.div`
-  padding-top: 40px;
+  padding: 40px 0px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 `;
 
 const RightSection = styled.div`
+// WIDTH might me modified or removed
+width: 1200px;
   display: flex;
   flex-direction: column;
   padding: 0 40px;
@@ -199,6 +201,7 @@ const ProductsWrapper = styled.div`
 `;
 
 const ProductContainer = styled.div`
+text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -222,8 +225,10 @@ const ProductContainer = styled.div`
   padding-left: 10px; */
 `;
 
+
+
 const ProductImg = styled.img`
-  border-radius: 10px;
+  max-width: 120px;
 
   /* position: absolute;
   top: -15px;
