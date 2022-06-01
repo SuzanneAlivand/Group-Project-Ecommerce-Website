@@ -35,6 +35,9 @@ function App() {
         <Route exact path="/sign-up">
           <SignUp />
         </Route>
+        <Route exact path="/user/:userName">
+          {/* Create user profile component here */}
+        </Route>        
       </Switch>
     </Router>
   );

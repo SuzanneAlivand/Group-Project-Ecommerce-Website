@@ -25,9 +25,9 @@ const Login = () => {
         body: JSON.stringify({ email: email, password: password }),
       });
       const json = await data.json();
-      setLoginMessage(json.message);
       console.log(json);
-      setUser(email);
+      setLoginMessage(json.message);
+      setUser(json.data.userName);
       history.push("/");
     } catch (error) {
       console.log("ERROR:", error.message);
