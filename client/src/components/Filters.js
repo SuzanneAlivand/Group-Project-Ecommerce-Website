@@ -71,7 +71,7 @@ const Filters = ({ reload, setReload }) => {
         />
       </label>
 
-      <p>By category</p>
+      <p>BY CATEGORY</p>
       <label>
         Fitness
         <input
@@ -184,6 +184,11 @@ const Filters = ({ reload, setReload }) => {
 const FilterForm = styled.form`
   display: flex;
   flex-direction: column;
+  /* padding: 10px; */
+
+  input {
+    padding-right: 20px;
+  }
 `;
 
 const FormTitle = styled.p`

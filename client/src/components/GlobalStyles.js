@@ -21,6 +21,8 @@ export default createGlobalStyle`
   */
   html, body {
     height: 100%;
+    padding: 10px;
+    font-family: roboto, sans-serif;
   }
   /*
     Typographic tweaks!
@@ -55,6 +57,16 @@ export default createGlobalStyle`
   */
   #root, #__next {
     isolation: isolate;
+    /* --color-cadmium-red: #D80026;
+    --color-alabama-crimson: #AA001E;
+    --color-orange: #F79D00;
+    --color-selective-yellow: #FDBB01;
+    --color-desert-sand: #E3C4A6;
+    --font-heading: 'Permanent Marker', Arial, Helvetica, sans-serif;
+    --font-body: 'Kosugi', Arial, Helvetica, sans-serif;
+    --padding-page: 24px;
+ */
+    
   }
 
   `;
