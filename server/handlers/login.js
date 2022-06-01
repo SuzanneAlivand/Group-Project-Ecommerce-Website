@@ -35,7 +35,10 @@ const login = async (req, res) => {
         status: 401,
         message: "The password is not correct",
       });
-    res.status(201).json({ status: 201, message: "user is logged in!" });
+
+    res
+      .status(201)
+      .json({ status: 201, data: user, message: "user is logged in!" });
     client.close();
   } catch (err) {
     res.status(500).json({ status: 500, message: err.message });

@@ -25,12 +25,7 @@ const Confirmation = () => {
             </>
           </ItemContainer>
         ))}
-        <TotalPrice>
-          Total: $
-          {getCheckOutData
-            ? getCheckOutData.total.toFixed(2)
-            : total.toFixed(2)}
-        </TotalPrice>
+        <TotalPrice>Total: ${getCheckOutData.total}</TotalPrice>
       </OrderSummary>
     </ConfirmationWrapper>
   );
