@@ -9,10 +9,12 @@ import SignUp from "./SignUp";
 import { AiOutlineLogin } from "react-icons/ai";
 import Confirmation from "./Confirmation";
 import OrderHistory from "./OrderHistory";
+import GlobalStyles from "./GlobalStyles";
 
 function App() {
   return (
     <Router>
+      <GlobalStyles />
       <Header />
       <Switch>
         <Route exact path="/">
