@@ -62,7 +62,7 @@ export default createGlobalStyle`
   */
   #root, #__next {
     isolation: isolate;
-    --color-primary: #99EAFF;
+    --color-primary: #99EAFF;  
     --color-secondary: #5A90BF;
     --color-tertiary: #254A59;
     --color-light: #F2F2F2;
