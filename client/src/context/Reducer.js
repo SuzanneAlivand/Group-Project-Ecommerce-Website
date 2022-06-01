@@ -54,19 +54,21 @@ export const itemReducer = (state, action) => {
       return { ...state, byCategoryMedical: !state.byCategoryMedical };
     case "CATEGORY_LIFESTYLE":
       return { ...state, byCategoryLifestyle: !state.byCategoryLifestyle };
-     case "CATEGORY_ENTERTAINMENT":
-        return { ...state, byCategoryEntertainment: !state.byCategoryEntertainment };
-     case "CATEGORY_GAMING":
-        return { ...state, byCategoryGaming: !state.byCategoryGaming };
-     case "CATEGORY_PETS":
-        return { ...state, byCategoryPets: !state.byCategoryPets };
-       
-     case "FILTER_BY_RATING":
+    case "CATEGORY_ENTERTAINMENT":
+      return {
+        ...state,
+        byCategoryEntertainment: !state.byCategoryEntertainment,
+      };
+    case "CATEGORY_GAMING":
+      return { ...state, byCategoryGaming: !state.byCategoryGaming };
+    case "CATEGORY_PETS":
+      return { ...state, byCategoryPets: !state.byCategoryPets };
+
+    case "FILTER_BY_RATING":
       return { ...state, byRating: action.payload };
 
     case "CLEAR_FILTERS":
       return {
-        
         byCategoryFitness: false,
         byCategoryMedical: false,
         byCategoryLifestyle: false,
@@ -76,7 +78,6 @@ export const itemReducer = (state, action) => {
         byBodyLocation: false,
         byStock: false,
         byRating: 0,
-        
       };
     default:
       return state;
