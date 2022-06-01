@@ -3,20 +3,23 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 const SearchBar = ({suggestions}) => {
-    const [value, setValue] = useState(""); //value is the word being entered in search bar; improve name later
-    const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(0);
+    const [value, setValue] = useState(""); //value is the word being entered in search bar
+    const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(0); //for highlighting the suggestion with mouse/keyboard
     const [dropDownVisible, setDropDownVisible] = useState(true);
 
     const history = useHistory();
 
+    //for highlighting the part of the words in the search results matching the user's search value 
     let firstHalf = "";
     let secondHalf = "";
     let stringIndex = 0;
     
+    //creates a new array of suggestions that matches the user's search value
     let matchedSuggestions = suggestions.filter(product => {
         return (product.name.toLowerCase().includes(value.toLowerCase()));
-    }).slice(0,4);
+    }).slice(0,4); //only stores the first 4 search results, otherwise it'll display dozens of results
 
+    //keyboard functionality for moving through search results
     const handleKeyPress = (e) => {
         setDropDownVisible(true);
         switch(e.key) {
@@ -30,7 +33,7 @@ const SearchBar = ({suggestions}) => {
                 e.preventDefault();
                 if(selectedSuggestionIndex > 0 
                     && matchedSuggestions.length !== 0 
-                    && dropDownVisible) { //dropDownVisible === true
+                    && dropDownVisible) {
                         setSelectedSuggestionIndex(selectedSuggestionIndex - 1);
                 }
                 return;
@@ -60,10 +63,13 @@ const SearchBar = ({suggestions}) => {
                 onKeyDown={(e) => handleKeyPress(e)}
                 placeholder="Search Products"
             />
+            {/* search results are mapped when user enters at least two letters that produces matches */}
             {(value.length >= 2 && matchedSuggestions.length > 0) && (
                 <ProductList isShown={dropDownVisible}>
                     {matchedSuggestions.map((product, index) => {
                         const isSelected = (selectedSuggestionIndex === index) ? true: false;
+
+                        //for highlighting the part of the search results that match user's search value
                         stringIndex = product.name.toLowerCase().indexOf(value);
                         firstHalf = product.name.slice(0, (stringIndex + value.length));
                         secondHalf = product.name.slice(stringIndex + value.length);
@@ -77,7 +83,6 @@ const SearchBar = ({suggestions}) => {
                                 onMouseEnter={() => {setSelectedSuggestionIndex(index)}}
                                 onClick={(e) => {
                                     setValue(product.name);
-                                    //add code to navigate to product details page for this product
                                     history.push(`/items/${product._id}`);
                                 }}
                             >
@@ -115,18 +120,6 @@ const Input = styled.input`
     }
 `;
 
-// const Button = styled.button`
-//     height: 2rem;
-//     border-radius: 3px;
-//     width: 70px;
-//     background: blue;
-//     color: white;
-
-//     &:focus {
-//         outline: lightblue 4px solid;
-//     }       
-// `;
-
 const ProductList = styled.ul`
     position: absolute;
     top: 30px;
@@ -142,7 +135,6 @@ const ProductItem = styled.li`
     box-sizing: border-box;
     position: relative;
     padding: 10px;
-    /* margin: 5px; */
     list-style-type: none;
     cursor: pointer;
 `;

@@ -17,11 +17,12 @@ const ProductDetails = () => {
     dispatch,
   } = CartState();
 
-  // storing data
+  // storing cart into localstorage
   useEffect(() => {
     localStorage.setItem("Cart", JSON.stringify(cart));
   }, [cart]);
 
+  // fetching product info by itemId
   useEffect(() => {
     const fetchProduct = async () => {
       const data = await fetch(`/api/items/${itemId}`);
@@ -31,6 +32,7 @@ const ProductDetails = () => {
     };
     fetchProduct();
   }, []);
+
 
   return (
     <Wrapper>
@@ -46,8 +48,9 @@ const ProductDetails = () => {
                 <BodyLocation>For: {product.body_location}</BodyLocation>
                 <Category>Category: {product.category}</Category>
                 <Stock>Qty In Stock: {product.numInStock}</Stock>
-                {/* <CompanyId>{product.companyId}</CompanyId> */}
                 <div>
+                  {/* button logic. if item isn't in card, button is marked as 'add to cart'. Once item is added, */}
+                  {/* it's marked as 'item added'. If item is out of stock, then button is disabled. */}
                   {product.numInStock > 0 ? (
                     cart.find((x) => x._id === product._id) ? (
                       <Button style={{ backgroundColor: "lightpink" }}>
