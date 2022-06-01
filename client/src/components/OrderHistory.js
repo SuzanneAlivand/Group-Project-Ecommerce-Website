@@ -1,4 +1,50 @@
 import styled from "styled-components";
+
+import { useContext, useEffect, useState  } from "react";
+import { useParams, Link } from "react-router-dom";
+import { UserContext } from "../context/Context";
+
+const OrderHistory = () => {
+    const [orders, setOrders] = useState(null);
+    const {userName} = useParams();
+    const {user, setUser} = useContext(UserContext);
+    
+    useEffect(() => {
+        const fetchOrders = async () => {
+            const data = await fetch(`/api/user/${userName}`);
+            const json = await data.json();
+            setOrders(json.data);
+            console.log(json.data);
+        };
+        fetchOrders();
+    },[]);
+
+    return (
+        <Wrapper> 
+            <Header>Order History</Header>
+            {user && orders && orders.map(order => 
+            <OrderWrapper>
+                <OrderInfo>
+                    <OrderTotal>TOTAL: ${order.total}</OrderTotal>
+                    <OrderShipTo>SHIPPED TO: {order.givenName} {order.surname}</OrderShipTo>
+                    <OrderNum>ORDER #: {order._id}</OrderNum>
+                </OrderInfo>
+
+                {order.cart.map((item) => (
+                <ItemContainer>
+                    <img src={item.imageSrc} />
+                    <ItemLink to={`/items/${item._id}`}><ItemName>{item.name}</ItemName></ItemLink>
+                    <p>$ {item.price}</p>
+                    <p>Quantity: {item.qty}</p>
+                    <p>Subtotal: ${(item.price * item.qty).toFixed(2)}</p>
+                </ItemContainer>
+                ))}
+            </OrderWrapper>    
+            )}
+        </Wrapper>
+    );
+}
+=======
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import SpinnerOne from "./spinners/SpinnerOne";
@@ -55,6 +101,7 @@ const OrderHistory = () => {
     </Wrapper>
   );
 };
+
 export default OrderHistory;
 
 const Wrapper = styled.div`
