@@ -27,6 +27,7 @@ const Filters = ({ reload, setReload }) => {
       <label>
         Ascending
         <input
+         className="radioBtn"
           type="radio"
           name="filterGroup"
           onChange={() => {
@@ -187,9 +188,20 @@ const FilterForm = styled.form`
   /* padding: 10px; */
 
   input {
-    padding-right: 20px;
+    padding: 20px;
+    font-size: 2em;
+
+    &.radioBtn {
+      font-size: 2em;
+    color: yellow;
+    padding: 20px;
   }
+
+  }
+
 `;
+
+
 
 const FormTitle = styled.p`
 text-align: center;
