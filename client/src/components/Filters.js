@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { CartState } from "../context/Context";
+import RatingTwo from "./RatingTwo";
 
 const Filters = ({ reload, setReload }) => {
   const {
@@ -157,6 +158,20 @@ const Filters = ({ reload, setReload }) => {
             checked={byCategoryPets}
           />
           <span>Pets and Animals</span>
+        </label>
+        <label>
+          <span>Rating: </span>
+          <RatingTwo
+            rating={byRating}
+            onClick={(i) => {
+              setReload(!reload);
+              itemDispatch({
+                type: "FILTER_BY_RATING",
+                payload: i + 1,
+              });
+            }}
+            style={{ cursor: "pointer" }}
+          />
         </label>
         <BtnWrapper>
           <Button

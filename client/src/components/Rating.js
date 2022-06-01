@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
 
 const Rating = ({ value }) => {

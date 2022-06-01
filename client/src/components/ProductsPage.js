@@ -81,6 +81,11 @@ const ProductsPage = () => {
         (product) => product.category === "Pets and Animals"
       );
     }
+    if (byRating) {
+      filteredProduct = filteredProduct.filter(
+        (product) => product.rating >= byRating
+      );
+    }
 
     return filteredProduct;
   };
@@ -175,8 +180,8 @@ const LeftSection = styled.div`
 `;
 
 const RightSection = styled.div`
-// WIDTH might me modified or removed
-width: 1200px;
+  // WIDTH might me modified or removed
+  width: 1200px;
   display: flex;
   flex-direction: column;
   padding: 0 40px;
@@ -201,7 +206,7 @@ const ProductsWrapper = styled.div`
 `;
 
 const ProductContainer = styled.div`
-text-align: center;
+  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -224,8 +229,6 @@ text-align: center;
   padding-bottom: 20px;
   padding-left: 10px; */
 `;
-
-
 
 const ProductImg = styled.img`
   max-width: 120px;
