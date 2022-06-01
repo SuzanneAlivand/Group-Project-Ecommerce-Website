@@ -8,6 +8,7 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import { AiOutlineLogin } from "react-icons/ai";
 import Confirmation from "./Confirmation";
+import OrderHistory from "./OrderHistory";
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
           <SignUp />
         </Route>
         <Route exact path="/user/:userName">
-          {/* Create user profile component here */}
+          <OrderHistory />
         </Route>        
       </Switch>
     </Router>
