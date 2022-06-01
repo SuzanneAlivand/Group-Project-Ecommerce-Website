@@ -18,6 +18,7 @@ const SearchBar = ({suggestions}) => {
     }).slice(0,4);
 
     const handleKeyPress = (e) => {
+        setDropDownVisible(true);
         switch(e.key) {
             case "Enter": {
                 if(matchedSuggestions.length !== 0 && e.target.value.length !== 0) {
@@ -44,7 +45,7 @@ const SearchBar = ({suggestions}) => {
                 return;
             }
             case "Escape": {
-                setDropDownVisible(!dropDownVisible);
+                setDropDownVisible(false);
                 return;
             }
         };  
@@ -57,6 +58,7 @@ const SearchBar = ({suggestions}) => {
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 onKeyDown={(e) => handleKeyPress(e)}
+                placeholder="Search Products"
             />
             <Button onClick={() => setValue("")}>Clear</Button>
 
@@ -72,7 +74,7 @@ const SearchBar = ({suggestions}) => {
                             <ProductItem 
                                 key={product._id}
                                 style={{
-                                    backgroundColor: isSelected ? 'hsla(50deg, 100%, 80%, 0.25)' : 'transparent'
+                                    backgroundColor: isSelected ? 'lightgray' : 'transparent'
                                 }}
                                 onMouseEnter={() => {setSelectedSuggestionIndex(index)}}
                                 onClick={(e) => {
@@ -97,6 +99,7 @@ export default SearchBar;
 
 const Wrapper = styled.div`
 display: flex;
+position: relative;
 flex-direction: column;
 align-items: center;
 padding-bottom: 40px;
@@ -128,10 +131,12 @@ const Button = styled.button`
 
 const ProductList = styled.ul`
     position: absolute;
+    top: 30px;
     border: 1px lightgray solid;
     margin-top: 5px; 
     display: ${prop => prop.isShown ? "block" : "none"};
     padding: 0;
+    background-color: whitesmoke;
     z-index: 2;
 `;
 

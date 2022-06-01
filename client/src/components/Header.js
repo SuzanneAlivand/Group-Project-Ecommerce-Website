@@ -156,8 +156,7 @@ const CartWrapper = styled.div`
     box-shadow: 5px 15px 31px 4px #dfdfdf;
     top: 65px;   
     z-index: 2;
-    display: ${(p) => !p.isOpen && "none"}
-    
+    display: ${(p) => !p.isOpen && "none"}   
 `;
 
 const CartBtnWrapper = styled.div`
