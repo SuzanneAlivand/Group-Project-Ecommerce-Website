@@ -25,7 +25,7 @@ const OrderHistory = () => {
     return (
         <Wrapper> 
             <Header>Order History</Header>
-            {loaded && ((user && orders) && orders.map(order => 
+            {loaded ? ((user && orders) && orders.map(order => 
             <OrderWrapper>
                 <OrderInfo>
                     <OrderTotal>TOTAL: ${order.total}</OrderTotal>
@@ -43,7 +43,7 @@ const OrderHistory = () => {
                 </ItemContainer>
                 ))}
             </OrderWrapper>    
-            ))}
+            )) : <SpinnerOne/>}
         </Wrapper>
     );
 }
