@@ -2,14 +2,17 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
 
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Poppins:wght@300;500;600&display=swap');
+
+
 
 /* https://www.joshwcomeau.com/css/custom-css-reset/
 
-  1. Use a more-intuitive box-sizing model.
+1. Use a more-intuitive box-sizing model.
 */
 *, *::before, *::after {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+}
   /*
     2. Remove default margin
   */
@@ -22,7 +25,8 @@ export default createGlobalStyle`
   html, body {
     height: 100%;
     padding: 10px;
-    font-family: roboto, sans-serif;
+    font-family: 'PT Sans', sans-serif;
+
     /* background-color: #7DE2FE; */
   }
   /*
@@ -58,18 +62,11 @@ export default createGlobalStyle`
   */
   #root, #__next {
     isolation: isolate;
-    /* --color- */
-
-    /* --color-cadmium-red: #D80026;
-    --color-alabama-crimson: #AA001E;
-    --color-orange: #F79D00;
-    --color-selective-yellow: #FDBB01;
-    --color-desert-sand: #E3C4A6;
-    --font-heading: 'Permanent Marker', Arial, Helvetica, sans-serif;
-    --font-body: 'Kosugi', Arial, Helvetica, sans-serif;
-    --padding-page: 24px;
- */
-    
+    --color-primary: #99EAFF;
+    --color-secondary: #5A90BF;
+    --color-tertiary: #254A59;
+    --color-light: #F2F2F2;
+    --color-complimentary: #FFD8B4;    
   }
 
   `;

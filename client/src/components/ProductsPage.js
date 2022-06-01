@@ -125,7 +125,12 @@ const ProductsPage = () => {
                     <div>
                       {product.numInStock > 0 ? (
                         cart.find((x) => x._id === product._id) ? (
-                          <Button style={{ backgroundColor: "lightpink" }}>
+                          <Button
+                            style={{
+                              backgroundColor: "var(--color-complimentary)",
+                              color: "black",
+                            }}
+                          >
                             Item added!
                           </Button>
                         ) : (
@@ -141,7 +146,15 @@ const ProductsPage = () => {
                           </Button>
                         )
                       ) : (
-                        <Button disabled>Out Of Stock</Button>
+                        <Button
+                          disabled
+                          style={{
+                            backgroundColor: "var(--color-light)",
+                            color: "grey",
+                          }}
+                        >
+                          Out Of Stock
+                        </Button>
                       )}
                     </div>
                   </ProductContainer>
@@ -169,11 +182,11 @@ const MainWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-start;
+  align-items: stretch;
 `;
 
 const LeftSection = styled.div`
-  padding: 40px 0px;
+  padding: 20px 0px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -184,7 +197,8 @@ const RightSection = styled.div`
   width: 1200px;
   display: flex;
   flex-direction: column;
-  padding: 0 40px;
+  justify-content: space-between;
+  padding: 20px 40px;
 `;
 
 const ProductsWrapper = styled.div`
@@ -192,16 +206,9 @@ const ProductsWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
 
-  /* display: grid;
-  justify-items: center;
-  grid-template: 1fr 1fr / 1fr 1fr 1fr;
-  gap: 100px;
-  margin: 20px 70px 70px 70px; */
   a {
     text-decoration: none;
     color: black;
-    /* display: flex;
-    justify-content: center; */
   }
 `;
 
@@ -215,44 +222,22 @@ const ProductContainer = styled.div`
   margin: 10px;
   border-radius: 10px;
   box-shadow: 5px 15px 31px 4px #dfdfdf;
-
-  /* position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  border: 1px solid gray;
-  border-radius: 20px;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  width: 250px;
-  height: 260px;
-  padding-bottom: 20px;
-  padding-left: 10px; */
 `;
 
 const ProductImg = styled.img`
   max-width: 120px;
-
-  /* position: absolute;
-  top: -15px;
-  width: 150px;
-  border-radius: 20px;
-  max-height: 150px; */
 `;
 
 const ProductName = styled.div`
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 700;
   display: flex;
   justify-content: space-around;
   padding: 10px 0;
-
-  /* font-size: 15px;
-  font-weight: bold; */
 `;
 
 const Price = styled.div`
-  font-size: 1em;
+  font-size: 0.8em;
   font-weight: 600;
   font-style: italic;
   color: #8e8e8e;
@@ -263,12 +248,16 @@ const Price = styled.div`
 
 const Button = styled.button`
   display: flex;
-
   border-radius: 4px;
   border: none;
-  background-color: lightblue;
+  background-color: var(--color-primary);
   cursor: pointer;
   padding: 5px 10px;
+
+  &:hover {
+    background-color: var(--color-secondary);
+    color: white;
+  }
 `;
 
 const PaginationWrapper = styled.div`
