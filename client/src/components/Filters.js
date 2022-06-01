@@ -169,10 +169,13 @@ const Filters = ({ reload, setReload }) => {
       <Button
         type="button"
         value="clear"
-        onClick={() =>
-          itemDispatch({
-            type: "CLEAR_FILTERS",
-          })
+        onClick={() => {
+            setReload(!reload);
+            itemDispatch({
+              type: "CLEAR_FILTERS",
+            });        
+        }
+
         }
       >
         Clear Filters

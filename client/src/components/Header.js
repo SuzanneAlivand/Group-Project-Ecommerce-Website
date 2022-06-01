@@ -25,8 +25,6 @@ const Header = () => {
 
     useEffect(() => {
         const closeCart = (e) => {
-            // (console.log(e.target));
-            // console.log(e.composedPath());
             if(e.path[0] !== cartBtnRef.current 
                 && e.path[1] !== cartBtnRef.current 
                 && e.path[2] !== cartBtnRef.current 
@@ -43,8 +41,6 @@ const Header = () => {
 
     useEffect(() => {
         const closeUserMenu = (e) => {
-            // (console.log(e.target));
-            // console.log(e.composedPath());
             if(e.path[0] !== userMenuRef.current 
                 && e.path[1] !== userMenuRef.current 
                 && e.path[2] !== userMenuRef.current 

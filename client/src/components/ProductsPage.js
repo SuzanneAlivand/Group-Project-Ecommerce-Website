@@ -119,7 +119,7 @@ const ProductsPage = () => {
                     <Price>${product.price}</Price>
                     <div>
                       {product.numInStock > 0 ? (
-                        cart.find((x) => x === product) ? (
+                        cart.find((x) => x._id === product._id) ? (
                           <Button style={{ backgroundColor: "lightpink" }}>
                             Item added!
                           </Button>
@@ -136,7 +136,7 @@ const ProductsPage = () => {
                           </Button>
                         )
                       ) : (
-                        <Button disabled>Add to my cart</Button>
+                        <Button disabled>Out Of Stock</Button>
                       )}
                     </div>
                   </ProductContainer>
