@@ -69,5 +69,11 @@ export default createGlobalStyle`
     --color-complimentary: #DBF2E3;    
     --color-lightBlue: #C2D9E3
   }
+  a {
+    color: #4E4E4E;
+}
 
+a:active {
+    color: #4E4E4E;
+}
   `;
