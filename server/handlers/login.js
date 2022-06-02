@@ -9,12 +9,14 @@ const options = {
 };
 
 const login = async (req, res) => {
+  // for login all the required information should be provided
   if (!req.body.email || !req.body.password)
     return res.status(400).json({
       status: 400,
       message: "Please provide your information!",
     });
   try {
+    // we search the db for finding that user
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();
     const db = client.db("e-commerce");

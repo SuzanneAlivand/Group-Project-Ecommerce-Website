@@ -23,8 +23,8 @@ const addOrder = async (req, res) => {
     const db = client.db("e-commerce");
     const NewOrder = await Object.assign({ _id: uuidv4() }, req.body);
     await db.collection("orders").insertOne(NewOrder);
+
     // we change the numInStock of the product in db, new numInStock=previous numInStock - qty
-    //
     const findItems = itemsId.map((x) => {
       db.collection("products").updateOne(
         { _id: x.id },

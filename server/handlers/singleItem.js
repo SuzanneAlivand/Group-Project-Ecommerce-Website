@@ -6,7 +6,7 @@ const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
-
+// getting an item by its Id
 const getItem = async (req, res) => {
   const _id = req.params.itemId * 1;
   try {
