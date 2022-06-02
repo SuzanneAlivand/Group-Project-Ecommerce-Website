@@ -70,8 +70,14 @@ export default createGlobalStyle`
   }
 
   //Added by TJ
-  a:active {
-    color: black;
+
+
+  a {
+    color: #4E4E4E;
+}
+
+a:active {
+    color: #4E4E4E;
 }
 
   `;

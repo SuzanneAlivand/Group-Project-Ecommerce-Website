@@ -194,11 +194,11 @@ const CartBtn = styled.button`
   justify-content: center;
   align-items: center;
   background-color: var(--color-secondary);
-  /* margin-left: 50px; */
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
   gap: 5px;
+  cursor: pointer;
 `;
 
 const CartCount = styled.div`
@@ -225,8 +225,9 @@ const CartBtnWrapper = styled.div`
 `;
 
 const ProductWrapper = styled.div`
-  padding: 5px;
+  padding: 10px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 
   &:hover {
@@ -236,14 +237,18 @@ const ProductWrapper = styled.div`
 
 const ProductLink = styled(Link)`
   text-decoration: none;
+  color: #4E4E4E;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 `;
 
 const Avatar = styled.img`
     width: 35px; 
     height: 35px;
-    border-radius: 50%;
-    padding-right: 8px;
+    /* border-radius: 50%; */
+    padding-right: 10px;
 `;
 
 const NamePriceDiv = styled.div`
@@ -253,11 +258,11 @@ const NamePriceDiv = styled.div`
 `;
 
 const Name = styled.div`
-  font-size: 12px;
+  font-size: 14px;
 `;
 
 const Price = styled.div`
-  font-size: 12px;
+  font-size: 14px;
 `;
 
 const BtnGoToCart = styled.button`
@@ -284,7 +289,7 @@ const UserMenuWrapper = styled.div`
   width: 10%;
   padding: 5px;
   flex-direction: column;
-  top: 65px;
+  top: 75px;
   box-shadow: 5px 15px 31px 4px #dfdfdf;
   font-size: 14px;
 `;
@@ -294,4 +299,8 @@ const MenuItem = styled.div`
     justify-content: flex-start;
     align-items: center;
     gap: 11px;
+
+    &:hover {
+        background-color: var(--color-light);   
+    } 
 `;
