@@ -161,7 +161,9 @@ const ProductsPage = () => {
                 ))}
               </ProductsWrapper>
             ) : (
-              <SpinnerOne style={{ width: "80vw", height: "80vh", color: "black" }} />
+              <SpinnerOne
+                style={{ width: "80vw", height: "80vh", color: "black" }}
+              />
             )}
             <PaginationWrapper>
               <PaginationDiv
@@ -221,7 +223,7 @@ const ProductContainer = styled.div`
   padding: 30px;
   margin: 10px;
   border-radius: 10px;
-  box-shadow: 5px 15px 31px 4px #dfdfdf;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 `;
 
 const ProductImg = styled.img`

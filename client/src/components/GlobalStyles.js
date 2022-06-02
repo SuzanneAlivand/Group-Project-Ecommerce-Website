@@ -24,7 +24,7 @@ export default createGlobalStyle`
   */
   html, body {
     height: 100%;
-    padding: 10px;
+    /* padding: 10px; */
     font-family: 'PT Sans', sans-serif;
 
     /* background-color: #7DE2FE; */

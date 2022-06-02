@@ -11,6 +11,7 @@ const SpinnerOne = () => {
 export default SpinnerOne;
 
 const Div = styled.div`
+  padding-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
