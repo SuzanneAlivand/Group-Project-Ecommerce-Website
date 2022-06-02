@@ -70,8 +70,9 @@ const Header = () => {
   return (
     <HeaderSection>
       <NavLinkStyled exact to="/">
-        <h1>World Of Wearables</h1>
+        <h1 style={{"color" : "#4E4E4E"}}>World Of Wearables</h1>
       </NavLinkStyled>
+      <CartBtnAndProfileBtnDiv>
       {/* Cart Dropdown/menu and icon are not displayed when checking out or viewing details of cart */}
       {location.pathname !== "/cart" && location.pathname !== "/checkout" && (
         <CartBtnWrapper>
@@ -98,6 +99,7 @@ const Header = () => {
                     </NamePriceDiv>
                   </ProductLink>
                   <AiFillDelete
+                    size={20}
                     style={{ cursor: "pointer" }}
                     onClick={(e) => {
                       e.stopPropagation(); //prevents the dropdown from closing when clicking to remove item
@@ -109,13 +111,10 @@ const Header = () => {
                   />
                 </ProductWrapper>
               ))}
-            {/* {toggleCart && cart.length > 0 && <BtnGoToCart><Link to="/cart">Go To Cart</Link></BtnGoToCart>}        */}
-            <BtnGoToCart>
-              <Link to="/cart" style={{ "text-decoration": "none" }}>
-                Go To Cart
-              </Link>
-            </BtnGoToCart>
-          </CartWrapper>
+              <LinkToCart to="/cart" style={{"text-decoration": "none"}}>
+                <BtnGoToCart>Go To Cart</BtnGoToCart>
+              </LinkToCart>     
+          </CartWrapper>          
         </CartBtnWrapper>
       )}
       <NavLinkStyled
@@ -145,6 +144,7 @@ const Header = () => {
           </UserMenuWrapper>
         )}
       </NavLinkStyled>
+      </CartBtnAndProfileBtnDiv>
     </HeaderSection>
   );
 };
@@ -173,6 +173,12 @@ const NavLinkStyled = styled(NavLink)`
     gap: 10px;
 `;
 
+const CartBtnAndProfileBtnDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+`;
+
 const LinkStyled = styled(Link)`
     text-decoration: none;
     display: flex;
@@ -190,6 +196,7 @@ const CartBtn = styled.button`
   border: none;
   border-radius: 5px;
   gap: 5px;
+  cursor: pointer;
 `;
 
 const CartCount = styled.div`
@@ -206,7 +213,9 @@ const CartWrapper = styled.div`
     box-shadow: 5px 15px 31px 4px #dfdfdf;
     top: 65px;   
     z-index: 2;
-    display: ${(p) => !p.isOpen && "none"}  //passing a prop to determine display none or not. Otherwise a box-shadow on the div shows when cart is closed.
+    //passing a prop to determine display none or not.
+    // Otherwise a small square box on the div shows when cart is closed.
+    display: ${(p) => !p.isOpen && "none"}  
 `;
 
 const CartBtnWrapper = styled.div`
@@ -217,6 +226,7 @@ const ProductWrapper = styled.div`
   padding: 8px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   &:hover {
     background-color: var(--color-light);
@@ -250,20 +260,30 @@ const Price = styled.div`
 `;
 
 const BtnGoToCart = styled.button`
+  position: relative;
   margin: 20px 50px 10px 50px;
   padding: 5px;
   border-radius: 5px;
   border: 1px #e4e8eb;
+  width: 100%;
+  cursor: pointer;
 
   &:hover {
-    color: white;
+    color: #FFFEFD;
     background-color: var(--color-secondary);
   }
+`;
+
+const LinkToCart = styled(Link)`
+  display: flex;
+  justify-content: center;
+  margin: 0;
 `;
 
 const Greeting = styled.div`
   font-weight: bold;
   text-decoration: none;
+  color: #4E4E4E;
 `;
 
 const UserMenuWrapper = styled(CartWrapper)`
