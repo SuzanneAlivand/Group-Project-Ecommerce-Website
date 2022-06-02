@@ -36,7 +36,9 @@ const MyCart = () => {
           <ItemContainer>
             <img src={item.imageSrc}></img>
             <div style={{ maxWidth: "200px" }}>
-              <p>{item.name}</p>
+              <Link to={`/items/${item._id}`}>
+                <p>{item.name}</p>
+              </Link>
             </div>
             <span>${Number(item.price).toFixed(2)}</span>
             {item.numInStock > 0 && (
@@ -96,20 +98,25 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
   padding: 20px 70px;
-  color: white;
+  a {
+    text-decoration: none;
+  }
 `;
 const Items = styled.div`
   width: 50vw;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ItemContainer = styled.div`
-  border: 0.5px solid grey;
+  border: 1px solid slategray;
   display: flex;
   padding: 10px 20px;
+  margin-bottom: 10px;
   justify-content: space-between;
   align-items: center;
-  border-radius: 5px;
-  background-color: #244d61;
+  border-radius: 6px;
+
   img {
     border-radius: 5px;
     width: 120px;
@@ -117,20 +124,23 @@ const ItemContainer = styled.div`
 `;
 
 const Purchase = styled.div`
-  border: 0.5px solid grey;
   width: 20%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: #244d61;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 6px;
+  box-shadow: 5px 15px 31px 4px #dfdfdf;
   align-self: flex-start;
   button {
-    padding: 5px 10px;
-    border-radius: 5px;
+    width: 250px;
+    height: 40px;
+    padding: 7px 20px;
+    font-size: 1.2rem;
     border: none;
+    color: white;
+    background-color: #1a1a1a;
     margin: 10px;
   }
   p {
