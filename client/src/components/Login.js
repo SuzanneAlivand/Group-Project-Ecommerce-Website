@@ -6,12 +6,15 @@ import { UserContext } from "../context/Context";
 const Login = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const [loginMessage, setLoginMessage] = useState(null); // rethink the variable name
+  const [loginMessage, setLoginMessage] = useState(null); 
 
+  //for authentication purposes
   const {user, setUser} = useContext(UserContext); 
   
   const history = useHistory();
 
+  //when user submits login info, we make a fetch request to authenticate info
+  //we get back authentication and set their username in state/context
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,7 +28,6 @@ const Login = () => {
         body: JSON.stringify({ email: email, password: password }),
       });
       const json = await data.json();
-      console.log(json);
       setLoginMessage(json.message);
       setUser(json.data.userName);
       history.push("/");
