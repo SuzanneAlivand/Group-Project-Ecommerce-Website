@@ -9,12 +9,13 @@ const Form = ({ handleSubmit, handleChange, total, cart }) => {
       <FormContent>
         <ReturnWrapper>
           <Link to="/cart">
-            <GrFormPreviousLink />
+            <GrFormPreviousLink/>
             <span> Return to cart</span>
           </Link>
         </ReturnWrapper>
-        <h1>Your order</h1>
-        <h2>Contact information</h2>
+
+        <H1>Your order</H1>
+        <H2>Contact information</H2>
         <FormGroup>
           <Input
             name="givenName"
@@ -38,7 +39,7 @@ const Form = ({ handleSubmit, handleChange, total, cart }) => {
           required
           onChange={(ev) => handleChange(ev.target.value, "email")}
         />
-        <h2>Shipping Address</h2>
+        <H2>Shipping Address</H2>
         <Input
           name="address"
           type="address"
@@ -87,8 +88,8 @@ const Form = ({ handleSubmit, handleChange, total, cart }) => {
             <img src={item.imageSrc}></img>
           ))}
         </Items>
-        <h4>Subtotal ({cart.length}) items</h4>
-        <h3>Total: ${total} </h3>
+        <H4>Subtotal ({cart.length}) items</H4>
+        <H3>Total:<span> ${total}</span> </H3>
       </Purchase>
     </FormWrapper>
   );
@@ -96,16 +97,30 @@ const Form = ({ handleSubmit, handleChange, total, cart }) => {
 
 const FormWrapper = styled.form`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 
-  padding: 50px 50px;
+  padding: 20px 50px;
 `;
+
+const H1 = styled.h1`
+padding-bottom: 20px;
+text-align: center;
+`
+
+const H2 = styled.h2`
+padding-top: 20px;
+padding-bottom: 10px;
+text-align: center;
+`
+
+
 const FormContent = styled.div`
-  max-width: 300px;
+  max-width: 400px;
   width: 50vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-right: 40px;
 `;
 
 const FormGroup = styled.div`
@@ -115,11 +130,14 @@ const FormGroup = styled.div`
 `;
 
 const ReturnWrapper = styled.div`
+padding-bottom: 20px;
   span {
     padding: 10px;
-    /* &.active {
-  text-decoration: none;
-} */
+  }
+    a {
+      color: #32cd32;
+    text-decoration: none;
+  
   }
 `;
 
@@ -133,27 +151,50 @@ const Input = styled.input`
 `;
 
 const BtnCheckout = styled.button`
-  margin-top: 20px;
-  padding: 10px;
+ margin-top: 20px;
+  padding: 7px 20px;
+  /* border-radius: 5px; */
+  font-size: 1.2rem;
+  width: 100%;
+  border: none;
+  color: white;
+  background-color: var(--color-secondary);
+
 `;
 
 const Purchase = styled.div`
-  background-color: #fafafa;
+  background-color: var(--color-lightBlue);
   border: 0.5px solid #e4e8eb;
-  width: 20%;
+  width: 28%;
   display: flex;
   flex-direction: column;
   padding: 10px;
+  margin-left: 40px;
 `;
 
 const Items = styled.div`
-  padding: 10px;
+  padding: 20px 10px;
   img {
-    max-width: 80px;
+    max-width: 100px;
     &:nth-child(n) {
       padding: 10px;
     }
   }
 `;
+
+const H4 = styled.h4`
+padding: 30px 20px;
+
+`
+
+const H3 = styled.h3`
+padding: 0 20px;
+ span {
+font-weight: 700;
+font-size: 1.4em;
+color: var(color-secondary);
+}
+`
+
 
 export default Form;
