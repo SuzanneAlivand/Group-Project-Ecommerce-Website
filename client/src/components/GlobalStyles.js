@@ -69,4 +69,9 @@ export default createGlobalStyle`
     --color-complimentary: #FFD8B4;    
   }
 
+  //Added by TJ
+  a:active {
+    color: black;
+}
+
   `;
