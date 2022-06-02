@@ -229,9 +229,10 @@ const ProductLink = styled(Link)`
 `;
 
 const Avatar = styled.img`
-    width: 40px; 
-    border-radius: 50%;
-    padding-right: 8px;
+    width: 35px; 
+    height: 35px;
+    padding-right: 10px;
+
 `;
 
 const NamePriceDiv = styled.div`
