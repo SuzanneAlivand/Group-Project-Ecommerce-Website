@@ -188,7 +188,7 @@ const MainWrapper = styled.div`
 `;
 
 const LeftSection = styled.div`
-  padding: 20px 0px;
+  padding: 20px 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
