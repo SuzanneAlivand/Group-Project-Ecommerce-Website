@@ -250,7 +250,7 @@ const Button = styled.button`
   display: flex;
   border-radius: 4px;
   border: none;
-  background-color: var(--color-primary);
+  background-color: #a6a6a6;
   cursor: pointer;
   padding: 5px 10px;
 

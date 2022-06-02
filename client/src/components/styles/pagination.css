@@ -6,7 +6,7 @@
   margin-bottom: 5rem;
   font-size: 1.3rem;
   gap: 5px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "PT Sans", sans-serif;
 }
 .pagination .page-num {
   padding: 8px 13px;
@@ -15,10 +15,10 @@
   font-weight: 400;
 }
 .pagination .page-num:hover {
-  background-color: #5ab1bb;
+  background-color: #343a40;
   color: #fff;
 }
 .pagination .active {
-  background-color: #5ab1bb;
+  background-color: #343a40;
   color: #fff;
 }

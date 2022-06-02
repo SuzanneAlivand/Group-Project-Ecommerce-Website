@@ -6,9 +6,9 @@ const RatingTwo = ({ rating, onClick, style }) => {
       {[...Array(5)].map((_, i) => (
         <span key={i} onClick={() => onClick(i)} style={style}>
           {rating > i ? (
-            <FaStar fontSize="15px" />
+            <FaStar fontSize="21px" style={{ color: "#4e4e4e" }} />
           ) : (
-            <FaRegStar fontSize="15px" />
+            <FaRegStar fontSize="21px" style={{ color: "#4e4e4e" }} />
           )}
         </span>
       ))}
