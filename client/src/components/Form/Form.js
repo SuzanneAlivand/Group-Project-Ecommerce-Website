@@ -9,7 +9,7 @@ const Form = ({ handleSubmit, handleChange, total, cart }) => {
       <FormContent>
         <ReturnWrapper>
           <Link to="/cart">
-            <GrFormPreviousLink/>
+            <GrFormPreviousLink />
             <span> Return to cart</span>
           </Link>
         </ReturnWrapper>
@@ -89,7 +89,9 @@ const Form = ({ handleSubmit, handleChange, total, cart }) => {
           ))}
         </Items>
         <H4>Subtotal ({cart.length}) items</H4>
-        <H3>Total:<span> ${total}</span> </H3>
+        <H3>
+          Total:<span> ${total}</span>{" "}
+        </H3>
       </Purchase>
     </FormWrapper>
   );
@@ -103,16 +105,15 @@ const FormWrapper = styled.form`
 `;
 
 const H1 = styled.h1`
-padding-bottom: 20px;
-text-align: center;
-`
+  padding-bottom: 20px;
+  text-align: center;
+`;
 
 const H2 = styled.h2`
-padding-top: 20px;
-padding-bottom: 10px;
-text-align: center;
-`
-
+  padding-top: 20px;
+  padding-bottom: 10px;
+  text-align: center;
+`;
 
 const FormContent = styled.div`
   max-width: 400px;
@@ -130,14 +131,13 @@ const FormGroup = styled.div`
 `;
 
 const ReturnWrapper = styled.div`
-padding-bottom: 20px;
+  padding-bottom: 20px;
   span {
     padding: 10px;
   }
-    a {
-      color: #32cd32;
+  a {
+    color: #32cd32;
     text-decoration: none;
-  
   }
 `;
 
@@ -151,7 +151,7 @@ const Input = styled.input`
 `;
 
 const BtnCheckout = styled.button`
- margin-top: 20px;
+  margin-top: 20px;
   padding: 7px 20px;
   font-size: 1.2rem;
   width: 100%;
@@ -162,7 +162,7 @@ const BtnCheckout = styled.button`
 `;
 
 const Purchase = styled.div`
-  background-color: var(--color-lightBlue);
+  background-color: var(--color-light);
   border: 0.5px solid #e4e8eb;
   width: 28%;
   display: flex;
@@ -182,18 +182,16 @@ const Items = styled.div`
 `;
 
 const H4 = styled.h4`
-padding: 30px 20px;
-
-`
+  padding: 30px 20px;
+`;
 
 const H3 = styled.h3`
-padding: 0 20px;
- span {
-font-weight: 700;
-font-size: 1.4em;
-color: var(color-secondary);
-}
-`
-
+  padding: 0 20px;
+  span {
+    font-weight: 700;
+    font-size: 1.4em;
+    color: var(color-secondary);
+  }
+`;
 
 export default Form;

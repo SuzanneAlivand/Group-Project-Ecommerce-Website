@@ -70,7 +70,7 @@ const Header = () => {
   return (
     <HeaderSection>
       <NavLinkStyled exact to="/">
-        <LogoHeader style={{ color: "#4E4E4E" }}>World Of Wearables</LogoHeader>
+        <LogoHeader style={{ color: "white" }}>World Of Wearables</LogoHeader>
       </NavLinkStyled>
       <CartBtnAndProfileBtnDiv>
         {/* Cart Dropdown/menu and icon are not displayed when checking out or viewing details of cart */}
@@ -82,7 +82,7 @@ const Header = () => {
                 setToggleCart(!toggleCart);
               }}
             >
-              <FaShoppingCart color="white" size={20} />
+              <FaShoppingCart color="#4e4e4e" size={20} />
               <CartCount>{cart.length}</CartCount>
             </CartBtn>
             {/* Cart dropdown only drops when there is something in the cart. */}
@@ -123,7 +123,7 @@ const Header = () => {
           onClick={() => setToggleUserMenu(!toggleUserMenu)}
           ref={userMenuRef}
         >
-          <CgProfile size={30} color="var(--color-secondary)" />
+          <CgProfile size={30} color="white" />
           {user ? (
             <Greeting>Welcome, {user}</Greeting>
           ) : (
@@ -158,7 +158,7 @@ const LogoHeader = styled.h1`
 `;
 
 const LoginDesign = styled.span`
-  color: var(--color-secondary);
+  color: white;
   font-size: 1.2em;
   font-weight: 700;
 `;
@@ -167,9 +167,11 @@ const HeaderSection = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 30px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-bottom: 20px;
+  margin-top: 0px !important;
+  color: white;
+  background-color: #4e4e4e;
+  padding: 20px 20px;
 `;
 
 const NavLinkStyled = styled(NavLink)`
@@ -198,7 +200,7 @@ const CartBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-secondary);
+  background-color: white;
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
@@ -209,6 +211,7 @@ const CartBtn = styled.button`
 const CartCount = styled.div`
   color: white;
   font-weight: bold;
+  color: #4e4e4e;
 `;
 
 const CartWrapper = styled.div`
@@ -217,7 +220,7 @@ const CartWrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
-  box-shadow: 5px 15px 31px 4px #dfdfdf;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   top: 75px;
   z-index: 2;
   //passing a prop to determine display none or not.
@@ -290,7 +293,7 @@ const LinkToCart = styled(Link)`
 const Greeting = styled.div`
   font-weight: bold;
   text-decoration: none;
-  color: #4e4e4e;
+  color: white;
 `;
 
 const UserMenuWrapper = styled(CartWrapper)`
