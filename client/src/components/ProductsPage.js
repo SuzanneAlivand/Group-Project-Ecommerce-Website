@@ -161,7 +161,7 @@ const ProductsPage = () => {
                 ))}
               </ProductsWrapper>
             ) : (
-              <SpinnerOne style={{ width: "80vw", height: "80vh" }} />
+              <SpinnerOne style={{ width: "80vw", height: "80vh", color: "black" }} />
             )}
             <PaginationWrapper>
               <PaginationDiv

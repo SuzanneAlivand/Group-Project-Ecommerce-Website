@@ -70,7 +70,7 @@ const Header = () => {
   return (
     <HeaderSection>
       <NavLinkStyled exact to="/">
-        <h1 style={{"color" : "#4E4E4E"}}>World Of Wearables</h1>
+        <LogoHeader style={{"color" : "#4E4E4E"}}>World Of Wearables</LogoHeader>
       </NavLinkStyled>
       <CartBtnAndProfileBtnDiv>
       {/* Cart Dropdown/menu and icon are not displayed when checking out or viewing details of cart */}
@@ -151,6 +151,12 @@ const Header = () => {
 
 export default Header;
 
+const LogoHeader = styled.h1`
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  font-size: 2.7em;
+`;
+
 const LoginDesign = styled.span`
   color: var(--color-secondary);
   font-size: 1.2em;
@@ -211,7 +217,7 @@ const CartWrapper = styled.div`
     flex-direction: column;
     background-color: white;
     box-shadow: 5px 15px 31px 4px #dfdfdf;
-    top: 65px;   
+    top: 75px;   
     z-index: 2;
     //passing a prop to determine display none or not.
     // Otherwise a small square box on the div shows when cart is closed.
@@ -235,6 +241,7 @@ const ProductWrapper = styled.div`
 
 const ProductLink = styled(Link)`
   text-decoration: none;
+  color: black;
   display: flex;
 `;
 
