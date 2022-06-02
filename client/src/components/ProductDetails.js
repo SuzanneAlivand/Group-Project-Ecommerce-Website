@@ -33,7 +33,6 @@ const ProductDetails = () => {
     fetchProduct();
   }, []);
 
-
   return (
     <Wrapper>
       <ProductWrapper>
@@ -53,7 +52,11 @@ const ProductDetails = () => {
                   {/* it's marked as 'item added'. If item is out of stock, then button is disabled. */}
                   {product.numInStock > 0 ? (
                     cart.find((x) => x._id === product._id) ? (
-                      <Button style={{ backgroundColor: "lightpink" }}>
+                      <Button
+                        style={{
+                          backgroundColor: "var(--color-complimentary)",
+                        }}
+                      >
                         Item added!
                       </Button>
                     ) : (
@@ -79,7 +82,7 @@ const ProductDetails = () => {
           <SpinnerOne />
         )}
       </ProductWrapper>
-    </Wrapper>  
+    </Wrapper>
   );
 };
 export default ProductDetails;
@@ -88,8 +91,9 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
   height: 70vh;
+  padding-top: 60px;
 `;
 
 const ProductWrapper = styled.div`
@@ -98,9 +102,9 @@ const ProductWrapper = styled.div`
   align-items: center;
   width: 50%;
   gap: 50px;
-  padding: 30px;
+  padding: 50px 40px;
   margin: 10px;
-  border-radius: 10px;
+  border-radius: 6px;
   box-shadow: 5px 15px 31px 4px #dfdfdf;
 `;
 
@@ -115,30 +119,34 @@ const Image = styled.img`
 `;
 
 const Name = styled.div`
-  font-size: 28px;
+  padding-bottom: 20px;
+  font-size: 1.8em;
   font-weight: bold;
 `;
 
 const Price = styled.div`
   font-style: italic;
-  color: gray;
+  color: var(--color-secondary);
+  font-size: 1.4em;
+
   margin-bottom: 30px;
+  padding-top: 10px;
 `;
 
 const BodyLocation = styled.div`
-  font-size: 22px;
+  font-size: 1em;
   font-weight: bold;
 `;
 
 const Category = styled.div`
-  font-size: 22px;
+  font-size: 1em;
   font-weight: bold;
 `;
 
 const Stock = styled.div`
-  font-size: 22px;
+  font-size: 1em;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `;
 
 const CompanyId = styled.div`
