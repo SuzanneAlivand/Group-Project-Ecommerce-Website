@@ -35,53 +35,51 @@ const ProductDetails = () => {
 
   return (
     <Wrapper>
-      <ProductWrapper>
-        {loaded ? (
-          product && (
-            <>
-              <Image src={product.imageSrc} />
-              <InfoWrapper>
-                <Name>{product.name}</Name>
-                <Rating value={product.rating} />
-                <Price>${product.price}</Price>
-                <BodyLocation>For: {product.body_location}</BodyLocation>
-                <Category>Category: {product.category}</Category>
-                <Stock>Qty In Stock: {product.numInStock}</Stock>
-                <div>
-                  {/* button logic. if item isn't in card, button is marked as 'add to cart'. Once item is added, */}
-                  {/* it's marked as 'item added'. If item is out of stock, then button is disabled. */}
-                  {product.numInStock > 0 ? (
-                    cart.find((x) => x._id === product._id) ? (
-                      <Button
-                        style={{
-                          backgroundColor: "var(--color-complimentary)",
-                        }}
-                      >
-                        Item added!
-                      </Button>
-                    ) : (
-                      <Button
-                        onClick={() => {
-                          dispatch({
-                            type: "ADD_ITEM",
-                            payload: product,
-                          });
-                        }}
-                      >
-                        Add to my cart
-                      </Button>
-                    )
+      {loaded ? (
+        product && (
+          <ProductWrapper>
+            <Image src={product.imageSrc} />
+            <InfoWrapper>
+              <Name>{product.name}</Name>
+              <Rating value={product.rating} />
+              <Price>${product.price}</Price>
+              <BodyLocation>For: {product.body_location}</BodyLocation>
+              <Category>Category: {product.category}</Category>
+              <Stock>Qty In Stock: {product.numInStock}</Stock>
+              <div>
+                {/* button logic. if item isn't in card, button is marked as 'add to cart'. Once item is added, */}
+                {/* it's marked as 'item added'. If item is out of stock, then button is disabled. */}
+                {product.numInStock > 0 ? (
+                  cart.find((x) => x._id === product._id) ? (
+                    <Button
+                      style={{
+                        backgroundColor: "var(--color-complimentary)",
+                      }}
+                    >
+                      Item added!
+                    </Button>
                   ) : (
-                    <Button disabled>Out Of Stock</Button>
-                  )}
-                </div>
-              </InfoWrapper>
-            </>
-          )
-        ) : (
-          <SpinnerOne />
-        )}
-      </ProductWrapper>
+                    <Button
+                      onClick={() => {
+                        dispatch({
+                          type: "ADD_ITEM",
+                          payload: product,
+                        });
+                      }}
+                    >
+                      Add to my cart
+                    </Button>
+                  )
+                ) : (
+                  <Button disabled>Out Of Stock</Button>
+                )}
+              </div>
+            </InfoWrapper>
+          </ProductWrapper>
+        )
+      ) : (
+        <SpinnerOne />
+      )}
     </Wrapper>
   );
 };
