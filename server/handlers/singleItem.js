@@ -14,7 +14,6 @@ const getItem = async (req, res) => {
     await client.connect();
     const db = client.db("e-commerce");
     const result = await db.collection("products").findOne({ _id });
-    console.log(_id);
 
     res.status(200).json({
       status: 200,

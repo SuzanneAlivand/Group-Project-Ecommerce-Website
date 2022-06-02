@@ -16,7 +16,7 @@ const MyCart = () => {
   useEffect(() => {
     localStorage.setItem("Cart", JSON.stringify(cart));
   }, [cart]);
-  // storing the totall amount in sessionStorage
+  // storing the total amount in sessionStorage
   useEffect(() => {
     sessionStorage.setItem("Total", JSON.stringify(total.toFixed(2)));
   }, [total, cart]);
@@ -26,7 +26,6 @@ const MyCart = () => {
       cart.reduce((acc, curr) => acc + Number(curr.price) * Number(curr.qty), 0)
     );
   }, [cart]);
-  const x = cart.map((x) => console.log(x.qty));
 
   return (
     <Wrapper>

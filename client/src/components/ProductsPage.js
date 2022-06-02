@@ -11,10 +11,12 @@ import SpinnerOne from "./spinners/SpinnerOne";
 const ProductsPage = () => {
   // const [products, setProducts] = useState(null);
   const [currentItems, setCurrentItems] = useState([]);
+  //we use this state to refetch(reload) and filter our products when a filter button is clicked
   const [reload, setReload] = useState(false);
   // for adding spinner, we define a loading state
   const [loaded, setLoaded] = useState(false);
 
+  //we import these from our reducer via context for filtering purposes
   const {
     state: { cart },
     itemState: {
@@ -37,7 +39,7 @@ const ProductsPage = () => {
   useEffect(() => {
     localStorage.setItem("Cart", JSON.stringify(cart));
   }, [cart]);
-
+  //this is the filter handler function that handles the actual filtering functionality on the array.
   const filterItems = (array) => {
     let filteredProduct = [...array];
 
@@ -89,19 +91,17 @@ const ProductsPage = () => {
 
     return filteredProduct;
   };
-
+  //fetching all products from BE
   useEffect(() => {
     const fetchProducts = async () => {
-      //to be modified later when endpoints and handlers have been created
       const data = await fetch("/api/items");
       const json = await data.json();
+  //products get filtered (if there is a filter set) then gets put into state for mapping later
       setProducts(filterItems(json.data));
       setLoaded(true);
     };
     fetchProducts();
   }, [reload]);
-
-  console.log("products", products);
 
   return (
     <MainWrapper>
@@ -165,6 +165,7 @@ const ProductsPage = () => {
                 style={{ width: "80vw", height: "80vh", color: "black" }}
               />
             )}
+            {/* pagination component */}
             <PaginationWrapper>
               <PaginationDiv
                 setCurrentItems={setCurrentItems}

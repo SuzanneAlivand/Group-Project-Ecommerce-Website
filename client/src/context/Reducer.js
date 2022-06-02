@@ -1,9 +1,10 @@
+//for removing, adding, and changing qty to our user's cart.
 export const cartReducer = (state, action) => {
   switch (action.type) {
+    //when we add an item to the cart, it searches if the product exists already in the cart or not.
     case "ADD_ITEM":
-      // return { ...state, cart: [...state.cart, { ...action.payload, qty: 1 }] };
-      // the reducer doesn't work properly, so i'm gonna change it
       const existItem = state.cart.find((x) => x._id === action.payload._id);
+      //if item exists, it will return the previous cart's state.
       if (existItem) {
         return {
           ...state,
@@ -11,18 +12,22 @@ export const cartReducer = (state, action) => {
             x._id === existItem._id ? { ...action.payload, qty: 1 } : x
           ),
         };
+      //if current added item doesn't exist, it'll add item with an QTY of 1.
       } else {
         return {
           ...state,
           cart: [...state.cart, { ...action.payload, qty: 1 }],
         };
       }
-
+    //searches the cart and filter the item that has the product Id which is passed through
+    //the payload
     case "REMOVE_ITEM":
       return {
         ...state,
         cart: state.cart.filter((x) => x._id !== action.payload),
       };
+    //searches the car tand changes the QTy of the item based on product Id that is
+    //passed through the payload
     case "CHANGE_CART_QTY":
       return {
         ...state,
@@ -40,9 +45,12 @@ export const cartReducer = (state, action) => {
   }
 };
 
-// Reducer - to filter the items
+// Reducer - to handle all filter functions. Each radio button will trigger a different dispatch
 export const itemReducer = (state, action) => {
   switch (action.type) {
+    //With each case, we change the status of each state. By default, the value of each category is false.
+    //With each dispatch call, we change the value to true - the radio button related to each case will
+    //be 'checked'
     case "SORT_BY_PRICE":
       return { ...state, sort: action.payload };
     case "SORT_BY_STOCK":

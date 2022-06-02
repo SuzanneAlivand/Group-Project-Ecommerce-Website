@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { CartState } from "../context/Context";
 
 const Confirmation = () => {
+  //Ordered products are taken from sessionStorage and stored in an array.
   const getCheckOutData = JSON.parse(sessionStorage.getItem("CheckoutData"));
-  console.log("get", getCheckOutData);
 
   const { total } = CartState();
   return (
@@ -20,6 +20,7 @@ const Confirmation = () => {
       </TitleConfirmation>
       <OrderSummary>
         <h3>Order summary</h3>
+        {/* maps out the products from sessionStorage array */}
         {getCheckOutData.cart.map((item) => (
           <ItemContainer>
             <>

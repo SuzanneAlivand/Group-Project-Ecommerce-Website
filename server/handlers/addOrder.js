@@ -9,13 +9,11 @@ const options = {
 };
 
 const addOrder = async (req, res) => {
-  console.log("req.body", req.body);
   const { cart } = req.body;
   // first we take the id and qty of each order
   const itemsId = cart.map((x) => {
     return { id: x._id, qty: x.qty };
   });
-  console.log(itemsId);
 
   try {
     const client = new MongoClient(MONGO_URI, options);
