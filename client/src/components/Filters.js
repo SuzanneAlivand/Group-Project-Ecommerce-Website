@@ -3,6 +3,9 @@ import { CartState } from "../context/Context";
 import RatingTwo from "./RatingTwo";
 
 const Filters = ({ reload, setReload }) => {
+
+  //we are importing our reducer state objects from context
+  //so we can use them for sorting/filtering
   const {
     itemState: {
       byCategoryFitness,
@@ -20,6 +23,7 @@ const Filters = ({ reload, setReload }) => {
 
   return (
     <>
+      {/* our filters component */}
       <FilterForm>
         <CategoryTitle>PRICE</CategoryTitle>
         <Div>
@@ -28,7 +32,9 @@ const Filters = ({ reload, setReload }) => {
               type="radio"
               name="filterGroup1"
               onChange={() => {
-                setReload(!reload);
+        //we pass this into useEffect to force re-render whenever there are changes on the radio buttons
+                setReload(!reload); 
+        //depending on which filter is chosen, the dispatch calls the respective action        
                 itemDispatch({
                   type: "SORT_BY_PRICE",
                   payload: "lowToHigh",

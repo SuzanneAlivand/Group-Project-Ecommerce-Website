@@ -37,7 +37,6 @@ const register = async (req, res) => {
     await client.connect();
     const db = client.db("e-commerce");
     const result = await db.collection("users").findOne({ email });
-    console.log(result);
     if (result) {
       res
         .status(400)
@@ -52,7 +51,6 @@ const register = async (req, res) => {
           process.env.PASS_SEC
         ).toString(),
       };
-      console.log(user);
       const NewUser = Object.assign({ _id: uuidv4() }, user);
       await db.collection("users").insertOne(NewUser);
       res.status(201).json({ status: 201, message: "New user added!" });

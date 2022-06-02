@@ -5,8 +5,6 @@ import { CartState } from "../context/Context";
 import Form from "./Form/Form";
 
 const Checkout = () => {
-  //   const [subStatus, setSubStatus] = useState("idle");
-  //   const [errMessage, setErrMessage] = useState("");
   const history = useHistory();
 
   const {
@@ -16,19 +14,20 @@ const Checkout = () => {
     total,
   } = CartState();
 
+  //for holding user information in state before submitting
   const [formData, setFormData] = useState({});
 
+  //redirects to confirmation when form is successfully submitted.
   const linkToConfirmationPage = (formData) => {
     history.push("/confirmation");
   };
 
-  console.log("cart", cart);
-
+  //handles and stores all user inputs into state 
   const handleChange = (value, name) => {
     setFormData({ ...formData, [name]: value });
   };
-  console.log("formData", formData);
 
+  //On Submit,  checkout data is created with cart info and the total price.
   const handleSubmit = async (ev) => {
     ev.preventDefault();
     const checkoutData = {
@@ -39,7 +38,7 @@ const Checkout = () => {
           : sessionStorage.getItem("Total"),
       ...formData,
     };
-
+    //sends all the form-filled data to BE 
     await fetch("/api/orders", {
       method: "POST",
       headers: {
@@ -51,7 +50,9 @@ const Checkout = () => {
       .then((res) => res.json())
       .then((data) => {
         dispatch({ type: "CLEAR" });
+        //we store this data in sessionStorage to make it available at the confirmation page.
         sessionStorage.setItem("CheckoutData", JSON.stringify(checkoutData));
+        //now that purchase is complete, we 'empty' the cart from session storage.
         setCart(localStorage.removeItem("Cart"));
         linkToConfirmationPage(formData);
       })

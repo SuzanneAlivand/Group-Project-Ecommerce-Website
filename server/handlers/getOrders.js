@@ -18,9 +18,7 @@ const getOrders = async (req, res) => {
     const theClient = await db.collection("users").findOne({ userName });
     const clientEmail = theClient.email;
     var query = { email: clientEmail };
-    console.log(query);
     const result = await db.collection("orders").find(query).toArray();
-    console.log(result);
     res.status(200).json({
       status: 200,
       data: result,

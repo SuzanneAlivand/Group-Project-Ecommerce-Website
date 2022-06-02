@@ -100,7 +100,7 @@ const Header = () => {
                     </ProductLink>
                     <AiFillDelete
                       size={20}
-                      style={{ cursor: "pointer" }}
+                      style={{ cursor: "pointer", color: "var(--color-primary)" }}
                       onClick={(e) => {
                         e.stopPropagation(); //prevents the dropdown from closing when clicking to remove item
                         dispatch({

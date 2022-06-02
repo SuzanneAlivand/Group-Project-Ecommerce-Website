@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { GrFormPreviousLink } from "react-icons/gr";
 
+//It's just a form.
 const Form = ({ handleSubmit, handleChange, total, cart }) => {
-  console.log("cart IS", cart);
   return (
     <FormWrapper onSubmit={handleSubmit}>
       <FormContent>

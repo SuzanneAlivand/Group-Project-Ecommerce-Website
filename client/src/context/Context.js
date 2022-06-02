@@ -23,6 +23,8 @@ export const CartProvider = ({ children }) => {
     cart,
   });
 
+  //we make it available to the whole App via context and
+  //we set the initial value of all filters to false
   const [itemState, itemDispatch] = useReducer(itemReducer, {
     byCategoryFitness: false,
     byCategoryMedical: false,
@@ -70,6 +72,7 @@ export const UserProvider = ({ children }) => {
   );
 };
 
+//custom hook for keeping track of the user that is logged in
 const usePersistedState = (localStorageName, initialValue) => {
   const [state, setState] = useState(() => {
     const storedValue = window.localStorage.getItem(localStorageName);
