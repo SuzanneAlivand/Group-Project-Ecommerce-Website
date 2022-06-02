@@ -153,13 +153,12 @@ const Input = styled.input`
 const BtnCheckout = styled.button`
  margin-top: 20px;
   padding: 7px 20px;
-  /* border-radius: 5px; */
   font-size: 1.2rem;
   width: 100%;
   border: none;
   color: white;
   background-color: var(--color-secondary);
-
+  cursor: pointer;
 `;
 
 const Purchase = styled.div`

@@ -142,6 +142,7 @@ const Purchase = styled.div`
     color: white;
     background-color: #1a1a1a;
     margin: 10px;
+    cursor: pointer;
   }
   p {
     font-size: 20px;

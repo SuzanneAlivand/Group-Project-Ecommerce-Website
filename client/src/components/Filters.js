@@ -16,8 +16,6 @@ const Filters = ({ reload, setReload }) => {
       byRating,
     },
     itemDispatch,
-    products,
-    setProducts,
   } = CartState();
 
   return (
@@ -225,6 +223,7 @@ const FilterForm = styled.form`
     border: 0.15em solid;
     border-radius: 50%;
     color: #343a40;
+    cursor: pointer;
     &:checked {
       background-color: #4e4e4e;
     }
@@ -247,6 +246,7 @@ const Button = styled.button`
   border: none;
   color: white;
   background-color: #1a1a1a;
+  cursor: pointer;
 `;
 
 const BtnWrapper = styled.div`
