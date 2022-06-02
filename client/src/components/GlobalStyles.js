@@ -62,22 +62,10 @@ export default createGlobalStyle`
   */
   #root, #__next {
     isolation: isolate;
-    --color-primary: #99EAFF;  
-    --color-secondary: #5A90BF;
-    --color-tertiary: #254A59;
-    --color-light: #F2F2F2;
-    --color-complimentary: #FFD8B4;    
+    --color-primary: #343A40;  
+    --color-secondary:#1A1A1A ;
+    --color-tertiary: #C1C1C1;
+    --color-light: #E5E5E5;
+    --color-complimentary: #DBF2E3;    
+    --color-lightBlue: #C2D9E3
   }
-
-  //Added by TJ
-
-
-  a {
-    color: #4E4E4E;
-}
-
-a:active {
-    color: #4E4E4E;
-}
-
-  `;
