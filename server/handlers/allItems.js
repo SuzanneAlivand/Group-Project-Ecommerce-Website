@@ -9,6 +9,7 @@ const options = {
 
 const getAllItems = async (req, res) => {
   try {
+    // getting all the products from db
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();
     const db = client.db("e-commerce");

@@ -70,80 +70,80 @@ const Header = () => {
   return (
     <HeaderSection>
       <NavLinkStyled exact to="/">
-        <LogoHeader style={{"color" : "#4E4E4E"}}>World Of Wearables</LogoHeader>
+        <LogoHeader style={{ color: "#4E4E4E" }}>World Of Wearables</LogoHeader>
       </NavLinkStyled>
       <CartBtnAndProfileBtnDiv>
-      {/* Cart Dropdown/menu and icon are not displayed when checking out or viewing details of cart */}
-      {location.pathname !== "/cart" && location.pathname !== "/checkout" && (
-        <CartBtnWrapper>
-          <CartBtn
-            ref={cartBtnRef}
-            onClick={() => {
-              setToggleCart(!toggleCart);
-            }}
-          >
-            <FaShoppingCart color="white" size={20} />
-            <CartCount>{cart.length}</CartCount>
-          </CartBtn>
-          {/* Cart dropdown only drops when there is something in the cart. */}
-          {/* 'isOpen' prop is passed to get rid of a small div display that shows when cart is empty. See CSS below. */}
-          <CartWrapper isOpen={toggleCart && cart.length > 0 ? true : false}>
-            {toggleCart &&
-              cart.map((product) => (
-                <ProductWrapper>
-                  <ProductLink to={`/items/${product._id}`}>
-                    <Avatar src={product.imageSrc} />
-                    <NamePriceDiv>
-                      <Name>{product.name}</Name>
-                      <Price>${product.price}</Price>
-                    </NamePriceDiv>
-                  </ProductLink>
-                  <AiFillDelete
-                    size={20}
-                    style={{ cursor: "pointer" }}
-                    onClick={(e) => {
-                      e.stopPropagation(); //prevents the dropdown from closing when clicking to remove item
-                      dispatch({
-                        type: "REMOVE_ITEM",
-                        payload: product._id,
-                      });
-                    }}
-                  />
-                </ProductWrapper>
-              ))}
-              <LinkToCart to="/cart" style={{"text-decoration": "none"}}>
+        {/* Cart Dropdown/menu and icon are not displayed when checking out or viewing details of cart */}
+        {location.pathname !== "/cart" && location.pathname !== "/checkout" && (
+          <CartBtnWrapper>
+            <CartBtn
+              ref={cartBtnRef}
+              onClick={() => {
+                setToggleCart(!toggleCart);
+              }}
+            >
+              <FaShoppingCart color="white" size={20} />
+              <CartCount>{cart.length}</CartCount>
+            </CartBtn>
+            {/* Cart dropdown only drops when there is something in the cart. */}
+            {/* 'isOpen' prop is passed to get rid of a small div display that shows when cart is empty. See CSS below. */}
+            <CartWrapper isOpen={toggleCart && cart.length > 0 ? true : false}>
+              {toggleCart &&
+                cart.map((product) => (
+                  <ProductWrapper>
+                    <ProductLink to={`/items/${product._id}`}>
+                      <Avatar src={product.imageSrc} />
+                      <NamePriceDiv>
+                        <Name>{product.name}</Name>
+                        <Price>${product.price}</Price>
+                      </NamePriceDiv>
+                    </ProductLink>
+                    <AiFillDelete
+                      size={20}
+                      style={{ cursor: "pointer" }}
+                      onClick={(e) => {
+                        e.stopPropagation(); //prevents the dropdown from closing when clicking to remove item
+                        dispatch({
+                          type: "REMOVE_ITEM",
+                          payload: product._id,
+                        });
+                      }}
+                    />
+                  </ProductWrapper>
+                ))}
+              <LinkToCart to="/cart" style={{ "text-decoration": "none" }}>
                 <BtnGoToCart>Go To Cart</BtnGoToCart>
-              </LinkToCart>     
-          </CartWrapper>          
-        </CartBtnWrapper>
-      )}
-      <NavLinkStyled
-        // if user is not logged in, then this link directs to login page. If user is logged in, then clicking here opens a drop down menu
-        to={!user && "/login"}
-        onClick={() => setToggleUserMenu(!toggleUserMenu)}
-        ref={userMenuRef}
-      >
-        <CgProfile size={30} color="var(--color-secondary)" />
-        {user ? (
-          <Greeting>Welcome, {user}</Greeting>
-        ) : (
-          <LoginDesign>Login</LoginDesign>
+              </LinkToCart>
+            </CartWrapper>
+          </CartBtnWrapper>
         )}
-        {user && toggleUserMenu && (
-          <UserMenuWrapper>
-            <MenuItem>
-              <LinkStyled to={`/user/${user}`}>
-                <MdOutlineHistoryEdu />
-                <div>Order History</div>
-              </LinkStyled>
-            </MenuItem>
-            <MenuItem onClick={handleLogout}>
-              <GoSignOut />
-              <div>Log Out</div>
-            </MenuItem>
-          </UserMenuWrapper>
-        )}
-      </NavLinkStyled>
+        <NavLinkStyled
+          // if user is not logged in, then this link directs to login page. If user is logged in, then clicking here opens a drop down menu
+          to={!user && "/login"}
+          onClick={() => setToggleUserMenu(!toggleUserMenu)}
+          ref={userMenuRef}
+        >
+          <CgProfile size={30} color="var(--color-secondary)" />
+          {user ? (
+            <Greeting>Welcome, {user}</Greeting>
+          ) : (
+            <LoginDesign>Login</LoginDesign>
+          )}
+          {user && toggleUserMenu && (
+            <UserMenuWrapper>
+              <MenuItem>
+                <LinkStyled to={`/user/${user}`}>
+                  <MdOutlineHistoryEdu style={{ color: "#1A1A1A" }} />
+                  <div style={{ color: "#343A40" }}>Order History</div>
+                </LinkStyled>
+              </MenuItem>
+              <MenuItem onClick={handleLogout}>
+                <GoSignOut style={{ color: "#1A1A1A" }} />
+                <div style={{ color: "#343A40" }}>Log Out</div>
+              </MenuItem>
+            </UserMenuWrapper>
+          )}
+        </NavLinkStyled>
       </CartBtnAndProfileBtnDiv>
     </HeaderSection>
   );
@@ -173,24 +173,25 @@ const HeaderSection = styled.header`
 `;
 
 const NavLinkStyled = styled(NavLink)`
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 10px;
 `;
 
 const CartBtnAndProfileBtnDiv = styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: 30%;
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+  color: "#4E4E4E";
 `;
 
 const LinkStyled = styled(Link)`
-    text-decoration: none;
-    display: flex;
-    gap: 11px;
-    align-items: center;
-    justify-content: flex-start;
+  text-decoration: none;
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  justify-content: flex-start;
 `;
 
 const CartBtn = styled.button`
@@ -211,17 +212,17 @@ const CartCount = styled.div`
 `;
 
 const CartWrapper = styled.div`
-    padding: 10px;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    box-shadow: 5px 15px 31px 4px #dfdfdf;
-    top: 75px;   
-    z-index: 2;
-    //passing a prop to determine display none or not.
-    // Otherwise a small square box on the div shows when cart is closed.
-    display: ${(p) => !p.isOpen && "none"}  
+  padding: 10px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 5px 15px 31px 4px #dfdfdf;
+  top: 75px;
+  z-index: 2;
+  //passing a prop to determine display none or not.
+  // Otherwise a small square box on the div shows when cart is closed.
+  display: ${(p) => !p.isOpen && "none"};
 `;
 
 const CartBtnWrapper = styled.div`
@@ -246,10 +247,9 @@ const ProductLink = styled(Link)`
 `;
 
 const Avatar = styled.img`
-    width: 35px; 
-    height: 35px;
-    padding-right: 10px;
-
+  width: 35px;
+  height: 35px;
+  padding-right: 10px;
 `;
 
 const NamePriceDiv = styled.div`
@@ -276,7 +276,7 @@ const BtnGoToCart = styled.button`
   cursor: pointer;
 
   &:hover {
-    color: #FFFEFD;
+    color: #fffefd;
     background-color: var(--color-secondary);
   }
 `;
@@ -290,7 +290,7 @@ const LinkToCart = styled(Link)`
 const Greeting = styled.div`
   font-weight: bold;
   text-decoration: none;
-  color: #4E4E4E;
+  color: #4e4e4e;
 `;
 
 const UserMenuWrapper = styled(CartWrapper)`
@@ -301,9 +301,8 @@ const UserMenuWrapper = styled(CartWrapper)`
 `;
 
 const MenuItem = styled(ProductWrapper)`
-
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 11px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 11px;
 `;

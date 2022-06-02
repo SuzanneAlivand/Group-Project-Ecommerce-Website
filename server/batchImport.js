@@ -11,6 +11,7 @@ const options = {
 };
 
 const batchImport = async () => {
+  // changing the price to number and adding random ratings to items
   for (const obj of items) {
     obj.price = parseFloat(obj.price.replace("$", ""));
     for (const obj in items) {

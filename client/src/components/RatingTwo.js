@@ -1,6 +1,7 @@
 import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
 
 const RatingTwo = ({ rating, onClick, style }) => {
+  // ratinf related to filtering part
   return (
     <>
       {[...Array(5)].map((_, i) => (

@@ -9,6 +9,7 @@ const options = {
   useUnifiedTopology: true,
 };
 
+// a post req for sign up
 const register = async (req, res) => {
   const { userName, email, password, secondPassword } = req.body;
 
@@ -31,6 +32,7 @@ const register = async (req, res) => {
     });
   }
   try {
+    // check if the user already exist or not
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();
     const db = client.db("e-commerce");
@@ -41,7 +43,7 @@ const register = async (req, res) => {
         .status(400)
         .json({ status: 400, message: "This email already exist!" });
     } else {
-      // password encryption
+      // password encryption and adding new user
       const user = {
         email: req.body.email,
         userName: req.body.userName,

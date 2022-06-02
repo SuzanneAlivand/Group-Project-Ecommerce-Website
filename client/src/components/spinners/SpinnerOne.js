@@ -3,7 +3,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 const SpinnerOne = () => {
   return (
     <Div>
-      <CircularProgress />
+      <CircularProgress style={{ color: "#1A1A1A" }} />
     </Div>
   );
 };

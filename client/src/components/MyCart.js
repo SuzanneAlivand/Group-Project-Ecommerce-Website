@@ -12,16 +12,15 @@ const MyCart = () => {
     setTotal,
   } = CartState();
 
-  // storing data
+  // storing the cart information in local storage
   useEffect(() => {
     localStorage.setItem("Cart", JSON.stringify(cart));
-    sessionStorage.setItem("Total", JSON.stringify(total.toFixed(2)));
   }, [cart]);
-
+  // storing the totall amount in sessionStorage
   useEffect(() => {
     sessionStorage.setItem("Total", JSON.stringify(total.toFixed(2)));
   }, [total, cart]);
-
+  // calculating the total price by every update of the cart
   useEffect(() => {
     setTotal(
       cart.reduce((acc, curr) => acc + Number(curr.price) * Number(curr.qty), 0)
@@ -109,14 +108,13 @@ const Items = styled.div`
 `;
 
 const ItemContainer = styled.div`
-  border: 1px solid slategray;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   display: flex;
   padding: 10px 20px;
   margin-bottom: 10px;
   justify-content: space-between;
   align-items: center;
   border-radius: 6px;
-
   img {
     border-radius: 5px;
     width: 120px;
@@ -131,7 +129,7 @@ const Purchase = styled.div`
   align-items: center;
   padding: 20px;
   border-radius: 6px;
-  box-shadow: 5px 15px 31px 4px #dfdfdf;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   align-self: flex-start;
   button {
     width: 250px;

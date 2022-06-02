@@ -6,7 +6,9 @@ const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
-
+// get all the orders of specific user
+// we have useName in url, we use this url to find the email of that specific user
+// then we search the orders DB to find the orders related to that specific user
 const getOrders = async (req, res) => {
   const userName = req.params.userName;
   try {

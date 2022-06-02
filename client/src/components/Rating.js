@@ -1,6 +1,8 @@
 import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
 
 const Rating = ({ value }) => {
+  // this rating is for products page and according to the number of rating
+  // will show star, halfStar or an empty star
   return (
     <div>
       <span>

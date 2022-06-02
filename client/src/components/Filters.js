@@ -228,6 +228,9 @@ const FilterForm = styled.form`
       background-color: #4e4e4e;
     }
   }
+  span {
+    cursor: pointer;
+  }
 `;
 
 const CategoryTitle = styled.div`

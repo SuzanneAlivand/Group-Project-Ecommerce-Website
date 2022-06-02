@@ -9,8 +9,14 @@ const Confirmation = () => {
   return (
     <ConfirmationWrapper>
       <TitleConfirmation>
-        <p>Thank you {getCheckOutData.givenName}!</p>
-        <h1>Your order is confirmed!</h1>
+        <p style={{ fontSize: "30px", color: "#4E4E4E", marginBottom: "20px" }}>
+          Thank you {getCheckOutData.givenName}!
+        </p>
+        <h2
+          style={{ fontSize: "30px", color: "#4E4E4E", marginBottom: "20px" }}
+        >
+          Your order is confirmed!
+        </h2>
       </TitleConfirmation>
       <OrderSummary>
         <h3>Order summary</h3>
