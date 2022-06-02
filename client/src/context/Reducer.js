@@ -57,20 +57,62 @@ export const itemReducer = (state, action) => {
       return { ...state, byStock: !state.byStock };
 
     case "CATEGORY_FITNESS":
-      return { ...state, byCategoryFitness: !state.byCategoryFitness };
+      return {     
+        byCategoryMedical: false,
+        byCategoryLifestyle: false,
+        byCategoryEntertainment: false,
+        byCategoryGaming: false,
+        byCategoryPets: false,
+        byRating: state.byRating,
+        byStock: state.byStock,
+        byCategoryFitness: !state.byCategoryFitness };
     case "CATEGORY_MEDICAL":
-      return { ...state, byCategoryMedical: !state.byCategoryMedical };
+      return {         
+        byCategoryFitness: false,
+        byCategoryLifestyle: false,
+        byCategoryEntertainment: false,
+        byCategoryGaming: false,
+        byCategoryPets: false,
+        byStock: state.byStock,
+        byRating: state.byRating, byCategoryMedical: !state.byCategoryMedical };
     case "CATEGORY_LIFESTYLE":
-      return { ...state, byCategoryLifestyle: !state.byCategoryLifestyle };
+      return {        
+        byCategoryFitness: false, 
+        byCategoryMedical: false,
+        byCategoryEntertainment: false,
+        byCategoryGaming: false,
+        byCategoryPets: false,
+        byStock: state.byStock,
+        byRating: state.byRating, byCategoryLifestyle: !state.byCategoryLifestyle };
     case "CATEGORY_ENTERTAINMENT":
       return {
-        ...state,
+        byCategoryFitness: false,
+        byCategoryMedical: false,
+        byCategoryLifestyle: false,
+        byCategoryGaming: false,
+        byCategoryPets: false,
+        byStock: state.byStock,
+        byRating: state.byRating,
         byCategoryEntertainment: !state.byCategoryEntertainment,
       };
     case "CATEGORY_GAMING":
-      return { ...state, byCategoryGaming: !state.byCategoryGaming };
+      return {     
+        byCategoryFitness: false,
+        byCategoryMedical: false,
+        byCategoryLifestyle: false,
+        byCategoryEntertainment: false,
+        byCategoryPets: false,
+        byStock: state.byStock,
+        byRating: state.byRating, byCategoryGaming: !state.byCategoryGaming };
     case "CATEGORY_PETS":
-      return { ...state, byCategoryPets: !state.byCategoryPets };
+      return {     
+        byCategoryFitness: false,
+        byCategoryMedical: false,
+        byCategoryLifestyle: false,
+        byCategoryEntertainment: false,
+        byCategoryGaming: false,
+        byStock: state.byStock,
+        byRating: state.byRating, byCategoryPets: !state.byCategoryPets };
 
     case "FILTER_BY_RATING":
       return { ...state, byRating: action.payload };
