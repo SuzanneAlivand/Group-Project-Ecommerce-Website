@@ -6,11 +6,11 @@ import { UserContext } from "../context/Context";
 const Login = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const [loginMessage, setLoginMessage] = useState(null); 
+  const [loginMessage, setLoginMessage] = useState(null);
 
   //for authentication purposes
-  const {user, setUser} = useContext(UserContext); 
-  
+  const { user, setUser } = useContext(UserContext);
+
   const history = useHistory();
 
   //when user submits login info, we make a fetch request to authenticate info
@@ -46,15 +46,16 @@ const Login = () => {
 
   return (
     <Wrapper>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <Form onSubmit={(e) => handleSubmit(e)}>
         <LoginContainer>
-          <Email
+          <p>Log In</p>
+          <input
             type="email"
-            placeholder="Login"
+            placeholder="Email"
             onChange={(e) => handleEmail(e)}
             required
           />
-          <PassInput
+          <input
             type="password"
             placeholder="Password"
             onChange={(e) => handlePassword(e)}
@@ -66,7 +67,7 @@ const Login = () => {
           </SignUpInfo>
           <LoginMessage>{loginMessage}</LoginMessage>
         </LoginContainer>
-      </form>
+      </Form>
     </Wrapper>
   );
 };
@@ -74,31 +75,48 @@ const Login = () => {
 export default Login;
 
 const Wrapper = styled.div`
+  padding-top: 100px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+`;
+
+const Form = styled.form`
+  padding: 20px;
+  input {
+    width: 250px;
+    height: 40px;
+    outline: none;
+  }
+  button {
+    width: 250px;
+    height: 40px;
+    padding: 7px 20px;
+    font-size: 1.2rem;
+    border: none;
+    color: white;
+    background-color: #1a1a1a;
+  }
+  p {
+    font-size: 1.3rem;
+  }
+  a {
+    color: #32cd32;
+    text-decoration: none;
+  }
 `;
 
 const LoginContainer = styled.div`
+  padding-top: 15px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  border: 2px black solid;
+  justify-content: space-evenly;
+  border-radius: 6px;
+  box-shadow: 5px 15px 31px 4px #dfdfdf;
   width: 500px;
-  height: 40vh;
+  height: 35vh;
   gap: 10px;
-`;
-
-const Email = styled.input`
-  width: 175px;
-  height: 20px;
-`;
-
-const PassInput = styled.input`
-  width: 175px;
-  height: 20px;
 `;
 
 const SignUpInfo = styled.div`
@@ -106,6 +124,6 @@ const SignUpInfo = styled.div`
 `;
 
 const LoginMessage = styled.div`
-  font-weight: bold;
-  color: red;
+  font-weight: 600;
+  color: #343a40;
 `;

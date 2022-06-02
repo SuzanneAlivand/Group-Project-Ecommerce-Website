@@ -61,27 +61,27 @@ const SignUp = () => {
   return (
     <Wrapper>
       <SignupForm onSubmit={(e) => handleSubmit(e)}>
-        <h2>Sign Up</h2>
-        <UsernameInput
+        <p>Sign Up</p>
+        <input
           type="text"
           placeholder="Username"
           onChange={(e) => handleUserName(e)}
           required
         />
-        <EmailInput
+        <input
           type="email"
           placeholder="Email Address"
           onChange={(e) => handleEmail(e)}
           required
         />
-        <PasswordInput
+        <input
           type="password"
           placeholder="Password"
           onChange={(e) => handlePassword(e)}
           minlength="6"
           required
         />
-        <PasswordInput
+        <input
           type="password"
           placeholder="Confirm Password"
           onChange={(e) => handleSecondPassword(e)}
@@ -104,36 +104,45 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-top: 100px;
 `;
 
 const SignupForm = styled.form`
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  border: 2px black solid;
+  border-radius: 6px;
+  box-shadow: 5px 15px 31px 4px #dfdfdf;
   width: 500px;
-  height: 40vh;
+  height: 50vh;
   gap: 10px;
+  p {
+    font-size: 1.3rem;
+  }
+  input {
+    width: 250px;
+    height: 40px;
+    outline: none;
+  }
+  button {
+    width: 250px;
+    height: 40px;
+    padding: 7px 20px;
+    font-size: 1.2rem;
+    border: none;
+    color: white;
+    background-color: #1a1a1a;
+  }
+  a {
+    color: #32cd32;
+    text-decoration: none;
+  }
 `;
 
 const NameContainer = styled.div`
   display: flex;
-`;
-
-const UsernameInput = styled.input`
-  width: 175px;
-  height: 20px;
-`;
-
-const EmailInput = styled.input`
-  width: 175px;
-  height: 20px;
-`;
-
-const PasswordInput = styled.input`
-  width: 175px;
-  height: 20px;
 `;
 
 const SignUpInfo = styled.div`
